@@ -1,5 +1,4 @@
-from os import remove
-
+from ..colecciones import  coleccion
 
 class Usuario :
     """
@@ -7,14 +6,26 @@ class Usuario :
         colecciones de piezas.
 
         ---ATRIBUTOS---
+
             __email : str
             __nombre : str
             __colecciones : list[Coleccion]
 
+        ---MÉTODOS---
 
+            anyadir_colecciones( coleccion : list[coleccion] )-> bool
+                añade una coleccion
+
+            eliminar_coleccion(self , coleccion : list[coleccion] ) -> bool
+                elimina una coleccion
+
+            __str__()
+
+            __len()__
+                Longitud de la lista de colecciones
 
     """
-    def __init__(self , email , nombre , colecciones = None)  :
+    def __init__(self , email : str  , nombre : str  , colecciones : list[coleccion] = None)  :
 
         if email is None or not email.strip() :
             print('Error email incorrecto')
@@ -33,22 +44,22 @@ class Usuario :
 
 
 
-    def anyadir_coleccion(self , coleccion ) -> bool:
+    def anyadir_coleccion(self , coleccion : list[coleccion] ) -> bool:
 
         if coleccion is None or coleccion == [] :
             return  False
         self.__colecciones.append(coleccion)
         return True
 
-    def eliminar_coleccion(self , coleccion) -> bool:
+    def eliminar_coleccion(self , coleccion : list[coleccion]) -> bool:
 
         if coleccion in self.__colecciones :
             self.__colecciones.remove(coleccion)
             return True
         return False
 
-    def __str__(self):
+    def __str__(self) -> str :
         return f"email = {self.__email} , nombre = {self.__nombre} ,colecciones = {self.__colecciones} "
 
-    def __len__(self):
+    def __len__(self) -> int :
         return len( self.__colecciones )
