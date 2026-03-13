@@ -1,4 +1,4 @@
-from ..colecciones import  coleccion
+from ..colecciones.coleccion import Coleccion
 
 class Usuario :
     """
@@ -25,7 +25,7 @@ class Usuario :
                 Longitud de la lista de colecciones
 
     """
-    def __init__(self , email : str  , nombre : str  , colecciones : list[coleccion] = None)  :
+    def __init__(self , email : str  , nombre : str  , colecciones : list[Coleccion] = None)  :
 
         if email is None or not email.strip() :
             print('Error email incorrecto')
@@ -43,15 +43,29 @@ class Usuario :
             self.__colecciones = colecciones
 
 
+    #--------------------------PROPIEDADES DE LOS ATRIBUTOS----------------------------------------------
 
-    def anyadir_coleccion(self , coleccion : list[coleccion] ) -> bool:
+    @property
+    def email(self) -> str :
+        return  self.__email
+
+    @property
+    def nombre(self) -> str:
+        return self.__nombre
+
+    @property
+    def colecciones(self) -> list[Coleccion] :
+        return self.__colecciones
+
+    #------------------------------METODOS----------------------------------------------------------------
+    def anyadir_coleccion(self , coleccion : list[Coleccion] ) -> bool:
 
         if coleccion is None or coleccion == [] :
             return  False
         self.__colecciones.append(coleccion)
         return True
 
-    def eliminar_coleccion(self , coleccion : list[coleccion]) -> bool:
+    def eliminar_coleccion(self , coleccion : list[Coleccion]) -> bool:
 
         if coleccion in self.__colecciones :
             self.__colecciones.remove(coleccion)
@@ -59,7 +73,7 @@ class Usuario :
         return False
 
     def __str__(self) -> str :
-        return f"email = {self.__email} , nombre = {self.__nombre} ,colecciones = {self.__colecciones} "
+        return f"Email = {self.__email} , Nombre = {self.__nombre} ,Numero de colecciones = {len(self)} "
 
     def __len__(self) -> int :
         return len( self.__colecciones )
