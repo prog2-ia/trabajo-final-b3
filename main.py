@@ -1,4 +1,4 @@
-from ui import  interfez
+from ui import  interfaz
 
 if __name__ == '__main__' :
     interfaz.interfaz()

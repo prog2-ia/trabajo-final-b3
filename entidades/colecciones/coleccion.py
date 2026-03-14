@@ -57,14 +57,14 @@ class Coleccion :
         else:
             return False # La pieza es válida pero no se encuentra en esta colección
 
-    def figuras(self) -> list[Figura]:
+    def get_figuras(self) -> list[Figura]:
         figuras = []
         for pieza in self.__piezas:
            if isinstance(pieza,Figura):
                figuras.append(pieza)
         return figuras.copy()
 
-    def cartas(self) -> list[Carta]:
+    def get_cartas(self) -> list[Carta]:
         cartas = []
         for pieza in self.__piezas:
             if isinstance(pieza,Carta):
