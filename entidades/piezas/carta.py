@@ -21,7 +21,7 @@ class Carta(Pieza):
 
     def tasar(self) -> float:
         precio_final = 50
-        match super().estado:
+        match self.estado:
             case 'PERFECTO':
                 precio_final = precio_final + (precio_final * 0.5)
             case 'BUENO':
@@ -31,7 +31,7 @@ class Carta(Pieza):
             case 'MALO':
                 precio_final = precio_final - (precio_final * 0.25)
 
-        match super().rareza:
+        match self.rareza:
             case 'LEGENDARIO':
                 precio_final = precio_final + (precio_final * 0.5)
             case 'RARO':
@@ -43,7 +43,7 @@ class Carta(Pieza):
             precio_final = precio_final * 2
 
 
-        super().precio = precio_final
+        self.precio = precio_final
 
         return precio_final
 

@@ -26,14 +26,21 @@ class Coleccion :
     __str__():
         imprimre el id y número de piezas de una colección
     """
-    def __init__(self, id: int, piezas: list[Pieza] = None):
-        self.__id = id
+    __identificador: int = 0
+
+    def __init__(self, piezas: list[Pieza] = None):
 
         if piezas != None:
             self.__piezas = piezas
         else:
             self.__piezas = []
 
+        type(self).__identificador += 1
+        self.__identificador = type(self).__identificador
+
+    @property
+    def identificador(self) -> int:
+        return self.__identificador
     def agregar_pieza(self, pieza: Pieza) -> bool:
 
         if not isinstance(pieza, Pieza):
@@ -72,10 +79,12 @@ class Coleccion :
         return cartas.copy()
 
 
-
+    def __eq__(self, other) -> bool:
+        if isinstance(other, Coleccion):
+            return self.__identificador == other.__identificador
 
     def __str__(self) -> str:
-        return f" Colección ID: {self.__id}  \n Número de piezas: {len(self.__piezas)}"
+        return f" Colección ID: {type(self).__identificador}  \n Número de piezas: {len(self.__piezas)}"
 
 
 

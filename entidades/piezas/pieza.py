@@ -28,9 +28,9 @@ class Pieza(ABC) :
             return
 
         self.__nombre = nombre
-        self.__estado = estado
+        self.__estado = estado.upper()
         self.__edicion = edicion
-        self.__rareza = rareza
+        self.__rareza = rareza.upper()
         self.__precio = 0
 
     #PROPIEDADES
@@ -68,11 +68,12 @@ class Pieza(ABC) :
         if self.__rareza == 'LEGENDARIO':
             return False
 
-        if self.__rareza == 'COMÚN':
-            self.__rareza = 'RARO'
-
         if self.__rareza == 'RARO':
             self.__rareza = 'LEGENDARIO'
+
+
+        if self.__rareza == 'COMÚN':
+            self.__rareza = 'RARO'
 
         return True
 
@@ -98,7 +99,7 @@ class Pieza(ABC) :
 
 
     def __str__(self) -> str:
-        return f"Nombre: {self.__nombre} \n Estado: {self.__estado} \n Edición: {self.__edicion} \n Rareza: {self.__rareza} \n Precio: {self.__precio}"
+        return f" Nombre: {self.__nombre} \n Estado: {self.__estado} \n Edición: {self.__edicion} \n Rareza: {self.__rareza} \n Precio: {self.__precio} \n"
 
 
 

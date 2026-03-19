@@ -28,11 +28,11 @@ class Figura(Pieza):
 
         self.__altura = altura
         self.__anchura = anchura
-        self.__material = material
+        self.__material = material.upper()
 
     def tasar(self) -> float:
         precio_final = (self.__altura * self.__anchura) * 0.5
-        match super().estado:
+        match self.estado:
             case 'PERFECTO':
                 precio_final = precio_final + (precio_final * 0.5)
             case 'BUENO':
@@ -42,7 +42,7 @@ class Figura(Pieza):
             case 'MALO':
                 precio_final = precio_final - (precio_final * 0.25)
 
-        match super().rareza:
+        match self.rareza:
             case 'LEGENDARIO':
                 precio_final = precio_final + (precio_final * 0.5)
             case 'RARO':
@@ -58,7 +58,7 @@ class Figura(Pieza):
             case 'METAL':
                 precio_final = precio_final + (precio_final * 0.1)
 
-        super().precio = precio_final
+        self.precio = precio_final
 
         return precio_final
 
