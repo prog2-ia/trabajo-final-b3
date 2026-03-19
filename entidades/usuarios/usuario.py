@@ -72,7 +72,7 @@ class Usuario :
             return True
         return False
 
-    def eq(self, other) -> bool:
+    def __eq__(self, other) -> bool:
         if not isinstance(other, Usuario):
             return False
         return self.email == other.email and self.nombre == other.nombre
@@ -82,3 +82,5 @@ class Usuario :
 
     def __len__(self) -> int :
         return len( self.__colecciones )
+
+    

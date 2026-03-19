@@ -14,10 +14,12 @@ class Figura(Pieza):
     def __init__(self, nombre: str, estado: str, edicion: str, rareza: str, altura: float, anchura: float, material: str):
         super().__init__(nombre, estado, edicion, rareza)
 
+        altura = int(altura)
         if type(altura) == str or altura <= 0:
             print('Altura inválida')
             return
 
+        anchura = int(anchura)
         if type(anchura) == str or anchura <= 0:
             print('Anchura inválida')
             return

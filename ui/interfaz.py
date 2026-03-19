@@ -1,120 +1,186 @@
-from servicios.gestorusuarios import GestorUsuarios
-from servicios.gestorcolecciones import Gestorcolecciones
+from servicios.coordinador import Coordinador
 
-def  interfaz():
+class Interfaz :
 
-    print('-------------------------------------------------------------------------------------------------')
-    print('-------------------------------GESTOR DE PIEZAS DE COLECCION-------------------------------------')
-    print('-------------------------------------------------------------------------------------------------')
+    def __init__(self):
+        self.__coordinador = Coordinador()
 
-    gestor = GestorUsuarios()
+    def parte_usuarios(self):
 
-    while True :
+        while True :
+            print ('================================================================================')
+            print('                GESTOR DE PIEZAS DE COLECCIÓN               ')           
+            print('================================================================================')
 
-        print( '0. Lista de usuarios'
-              '\n 1.Registrar nuevo usuario'
-              '\n 2.Iniciar sesion con un usuario'
-              '\n 3.Salir'
-              )
+            print(
+                ' 0. Lista de usuarios'
+                '\n 1. Registrar nuevo usuario'
+                '\n 2. Iniciar sesion con un usuario'
+                '\n 3. Salir'
+                )
 
-        entrada = input('> ')
-
-
-        match entrada :
-            case '0' :
-                gestor.lista_usuarios()
-            case '1' :
-
-                email =  input('Email : ')
-                nombre = input('Nombre : ')
-                sol =  gestor.registrar_usuario(email= email , nombre= nombre)
-                print('\n Usuario registrado correctamente') if sol == True else print('\n Usuario registrado incorrecto')
-
-            case '2' :
-
-                email = input('Email : ')
-                nombre = input('Nombre : ')
-                sol = gestor.inicio_sesion(email= email , nombre= nombre)
-                print('\n Usuario encontrado') if sol == True else print('\n Usuario no encontrado')
-                interfaz_usuario_personal(gestor.usuario_actual)
-
-            case '3' :
-                return
-            case _ :
-                print('\n Valor incorrecto')
+            entrada = input('\n Seleccione una opción > ')
 
 
-def interfaz_usuario_personal(usuario) :
+            match entrada :
+                case '0' :
+                    print('\n................................................................')
+                    print('                LISTA DE USUARIOS              ')           
+                    print('................................................................\n')
+                    self.__coordinador.listar_usuarios()
+                case '1' :
+                    print('\n................................................................')
+                    print('                REGISTRO DE USUARIO              ')           
+                    print('................................................................\n')
 
-    print('-------------------------------------------------------------------------------------------------------------------')
-    print(f'-------------------------------  Sesion iniciada Usuario : {usuario.nombre}  -------------------------------------')
-    print('-------------------------------------------------------------------------------------------------------------------')
+                    email =  input('Email : ')
+                    nombre = input('Nombre : ')
+                    print(f'----{self.__coordinador.registrar_usuario(email= email , nombre= nombre)}----')
 
-    gestor = Gestorcolecciones(usuario)
-    while True:
+                case '2' :
 
-        print('\n 1.Obtener info de usuario'
-              '\n 2.Gestionar colecciones'
-              '\n 3.Salir'
-              )
-        hola = input('> ')
-        match hola:
+                    print('\n................................................................')
+                    print('                INICIO DE SESIÓN              ')           
+                    print('................................................................\n')
+
+                    email = input('Email : ')
+                    nombre = input('Nombre : ')
+                    resultado = self.__coordinador.iniciar_sesion_usuario(email= email , nombre= nombre)
+                    print(f'----{resultado}----')
+                    if resultado == 'Usuario iniciado correctamente' : 
+                        self.parte_colecciones()
+                case '3' :
+                    return
+                case _ :
+                    print('\n ---- Valor incorrecto ----')
+
+    def parte_colecciones(self):
+        
+        self.__coordinador.inicializar_colecciones()
+        while True:
+            print ('\n================================================================================')
+            print('                GESTOR DE COLECCIONES               ')           
+            print('================================================================================')
+
+            print(
+                '0 .  Lista de Colecciones'
+                '\n 1. Crear coleccion'
+                '\n 2. Eliminar Coleccion'
+                '\n 3. Seleccionar coleccion'
+                '\n 4. Retroceder'
+            )
+
+            entrada = input('\n Seleccione una opción > ')
+
+            match entrada:
+                case '0':
+                    print('\n................................................................')
+                    print('                LISTA DE COLECCIÓN              ')           
+                    print('................................................................\n')
+
+                    self.__coordinador.listar_colecciones()
+
                 case '1':
-                    print(usuario)
+                    print('\n................................................................')
+                    print('                CREACIÓN DE COLECCIÓN              ')           
+                    print('................................................................\n')
+
+                    print(f'----{self.__coordinador.crear_nueva_coleccion()}----')
 
                 case '2':
-                    print('Colecciones del usuario')
-                    gestor.mostrar_colecciones()
-                    interfaz_colecciones(gestor)
+                    print('\n................................................................')
+                    print('                ELIMINAR COLECCIÓN              ')           
+                    print('................................................................\n')
+                    id = input('Identificador >  ')
+                    print(f'----{self.__coordinador.eliminar_coleccion(id)}----')
 
                 case '3':
-                    return
+                    print('\n................................................................')
+                    print('                SELECCIONAR COLECCIÓN              ')           
+                    print('................................................................\n')
+                    id = input('Identificador >  ')
+                    resultado = self.__coordinador.seleccionar_coleccion(id)
+                    print(f'----{resultado}----')
+                    if resultado != 'coleccion id : {id} no encontrada' : 
+                        self.parte_gestion_coleccion_unica(id)
+
+                case '4':
+                    self.parte_usuarios()
+                    break 
                 case _:
                     print('\n Valor incorrecto')
 
-def interfaz_colecciones(gestor) :
+    def parte_gestion_coleccion_unica(self,id) : 
+        while True:
 
-    while True:
+            print ('\n================================================================================')
+            print(f'                GESTOR DE COLECCIÓN : {id}               ')           
+            print('================================================================================')
 
-        print('\n 1.Crear coleccion'
-              '\n 2.Eliminar coleccion'
-              '\n 3.Entrar en la coleccion'
-              '\n 4.Salir'
-              )
-        hola = input('> ')
-        match hola:
-            case '1':
-                gestor.añadir_coleccion()
-            case '2':
-                gestor.eliminar_coleccion()
-            case '3':
-                gestor.obtener_coleccion()
-            case '4':
-                return
-            case _:
-                print('\n Valor incorrecto')
+            print(
+                '0.  Lista de Piezas de la colección'
+                '\n 1. Obtener todas las piezas de colección tipo figura'
+                '\n 2. Obtener todas las piezas de colección tipo Carta'
+                '\n 3. Añadir una pieza a la colección'
+                '\n 4. Eliminar una pieza de la colección'
+                '\n 5. Reparar una pieza de la colección'
+                '\n 6. Mejorar una pieza de la colección'
+                '\n 7. Tasar una pieza de la colección'
+                '\n 8. Seleccionar una pieza de la colección'
+                '\n 9. Retroceder'
+            )
 
+            entrada = input('\n Seleccione una opción > ')
 
-def interfaz_pieza(coleccion) :
+            match entrada:
+                case '0':
+                    print('\n................................................................')
+                    print('                LISTA DE PIEZAS DE COLECCIÓN              ')           
+                    print('................................................................\n')
 
-    while True:
+                    self.__coordinador.obtener_piezas()
 
-        print('\n 1.Mirar piezas'
-              '\n 2.Añadir pieza'
-              '\n 3.Eliminar pieza'
-              '\n 4.Seleccionar pieza'
-              '\n 4.Salir'
-              )
-        hola = input('> ')
-        match hola:
-            case '1':
-                gestor.añadir_coleccion()
-            case '2':
-                gestor.eliminar_coleccion()
-            case '3':
-                gestor.obtener_coleccion()
-            case '4':
-                return
-            case _:
-                print('\n Valor incorrecto')
+                case '1':
+                    print('\n................................................................')
+                    print('                LISTA DE FIGURAS              ')           
+                    print('................................................................\n')
 
+                    self.__coordinador.obtener_figuras()
+
+                case '2':
+                    print('\n................................................................')
+                    print('                LISTA DE CARTAS               ')           
+                    print('................................................................\n')
+
+                    self.__coordinador.obtener_cartas()
+
+                case '3':
+                    print('\n................................................................')
+                    print('                AÑADIR PIEZA DE COLECCIÓN              ')           
+                    print('................................................................\n')
+                    #nombre: str, estado: str, edicion: str, rareza: str
+
+                    nombre = input('Nombre >  ')
+                    estado = input('Estado : valores posibles [PERFECTO,BUENO,ACEPTABLE,MALO]  >')
+                    edicion = input('Edicion >')
+                    rareza = input('Rareza : valores posibles [LEGENDARIO,RARO,COMÚN] > ')
+                    tipo = input('Tipo de pieza de colección : valores posibles [CARTA , FIGURA] > ')
+
+                    if tipo.upper() == 'CARTA' :
+
+                        imagen = input('imagen de la carta(str) > ')
+                        self.__coordinador.anyadir_carta(nombre , estado , edicion , rareza , imagen )
+
+                    elif tipo.upper() =='FIGURA' :
+
+                        altura = input('altura de la figura > ')
+                        anchura = input('anchura de la figura > ')
+                        materiales = input('materiale del que está hecha : valores posibles [PVC,RESINA,METAL] > ')
+                        self.__coordinador.anyadir_figura(nombre , estado , edicion , rareza , altura , anchura , materiales )
+                    else  : 
+                        print('\n----Tipo indicado incorrecto----')
+
+                case '9':
+                    self.parte_colecciones()
+                case _:
+                    print('\n Valor incorrecto')

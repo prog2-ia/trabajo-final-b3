@@ -1,4 +1,5 @@
-from ui import  interfaz
+from ui.interfaz import  Interfaz
 
 if __name__ == '__main__' :
-    interfaz.interfaz()
+    interfaz = Interfaz()
+    interfaz.parte_usuarios()

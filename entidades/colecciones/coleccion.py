@@ -41,6 +41,7 @@ class Coleccion :
     @property
     def identificador(self) -> int:
         return self.__identificador
+    
     def agregar_pieza(self, pieza: Pieza) -> bool:
 
         if not isinstance(pieza, Pieza):
@@ -48,7 +49,7 @@ class Coleccion :
             return False
 
         if pieza in self.__piezas:
-           # print("Error: La pieza ya se encuentra en la colección")
+            # print("Error: La pieza ya se encuentra en la colección")
             return False
 
         self.__piezas.append(pieza)
@@ -67,8 +68,8 @@ class Coleccion :
     def get_figuras(self) -> list[Figura]:
         figuras = []
         for pieza in self.__piezas:
-           if isinstance(pieza,Figura):
-               figuras.append(pieza)
+            if isinstance(pieza,Figura):
+                figuras.append(pieza)
         return figuras.copy()
 
     def get_cartas(self) -> list[Carta]:
@@ -84,7 +85,7 @@ class Coleccion :
             return self.__identificador == other.__identificador
 
     def __str__(self) -> str:
-        return f" Colección ID: {type(self).__identificador}  \n Número de piezas: {len(self.__piezas)}"
+        return f" Colección ID: {self.__identificador}  , Número de piezas: {len(self.__piezas)}"
 
 
 
