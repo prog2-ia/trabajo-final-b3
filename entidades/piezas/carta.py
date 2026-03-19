@@ -56,7 +56,7 @@ class Carta(Pieza):
         return True
 
     def __str__(self):
-        inicial = super().__str__()
-        return inicial + f" Imagen: {self.__imagen} \n Firmada: {self.__firma}"
+        padre = super().__str__()
+        return padre + f" Imagen: {self.__imagen}, Firmada: {self.__firma}"
 
 

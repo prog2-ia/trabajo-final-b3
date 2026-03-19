@@ -15,7 +15,7 @@ class Pieza(ABC) :
             print("Nombre inválido")
             return
 
-        if estado is None or not estado.strip() or estado.upper() not in ['PERFECTO','BUENO','ACEPTABLE','MALO']:
+        if estado is None or not estado.strip() or estado.upper() not in ['PERFECTO', 'BUENO', 'ACEPTABLE', 'MALO']:
             print("Estado inválido")
             return
 
@@ -23,7 +23,7 @@ class Pieza(ABC) :
             print('Edición inválido')
             return
 
-        if rareza is None or not rareza.strip() or rareza.upper() not in ['LEGENDARIO','RARO','COMÚN']:
+        if rareza is None or not rareza.strip() or rareza.upper() not in ['LEGENDARIO', 'RARO', 'COMÚN']:
             print('Rareza inválida')
             return
 
@@ -98,8 +98,13 @@ class Pieza(ABC) :
         pass
 
 
+    def __eq__(self, other) -> bool:
+        if isinstance(other, Pieza):
+            return (self.__nombre == other.nombre and self.__estado == other.estado and
+                    self.__rareza == other.rareza and self.__edicion == other.edicion)
+
     def __str__(self) -> str:
-        return f" Nombre: {self.__nombre} \n Estado: {self.__estado} \n Edición: {self.__edicion} \n Rareza: {self.__rareza} \n Precio: {self.__precio} \n"
+        return f" Nombre: {self.__nombre}, Estado: {self.__estado}, Edición: {self.__edicion}, Rareza: {self.__rareza}, Precio: {self.__precio},"
 
 
 

@@ -72,6 +72,11 @@ class Usuario :
             return True
         return False
 
+    def eq(self, other) -> bool:
+        if not isinstance(other, Usuario):
+            return False
+        return self.email == other.email and self.nombre == other.nombre
+
     def __str__(self) -> str :
         return f"Email = {self.__email} , Nombre = {self.__nombre} ,Numero de colecciones = {len(self)} "
 

@@ -64,7 +64,7 @@ class Figura(Pieza):
 
     def aumentar_tamanyo(self, altura, anchura) -> bool:
 
-        if type(altura) != int or type(altura) != float or type(anchura) != int or type(anchura) != float:
+        if (type(altura) != int and type(altura) != float) or (type(anchura) != int and type(anchura) != float):
             return False
 
         if altura < self.__altura or anchura < self.__anchura:
@@ -79,4 +79,5 @@ class Figura(Pieza):
         return True
 
     def __str__(self):
-        return super().__str__() + f"Altura: {self.__altura} \n Anchura: {self.__anchura} \n Material: {self.__material}"
+        padre = super().__str__()
+        return padre + f"Altura: {self.__altura}, Anchura: {self.__anchura}, Material: {self.__material}"
