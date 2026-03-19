@@ -74,8 +74,8 @@ class Coleccion :
 
 
 
-    def __str__(self):
-        return (f" Colección ID: {self.__id}  \n Número de piezas: {len(self.__piezas)}")
+    def __str__(self) -> str:
+        return f" Colección ID: {self.__id}  \n Número de piezas: {len(self.__piezas)}"
 
 
 

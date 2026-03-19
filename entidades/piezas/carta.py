@@ -1,49 +1,62 @@
 from .pieza import Pieza
 
-class Carta(Pieza) :
+
+class Carta(Pieza):
     """
-    Carta es una subclase de pieza que representa una carta de colacción
 
-    ---ATRIBUTOS---
-
-        __material: str -> [PVC,RESINA,METAL]
 
     """
-    def __init__(self, nombre: str, estado: str, edicion: str, rareza: str, altura: float, anchura: float, material: str):
-        super().__init__(nombre,estado,edicion,rareza)
 
-        if type(altura) == str or altura <= 0:
-            print('Altura inválida')
+    def __init__(self, nombre: str, estado: str, edicion: str, rareza: str, imagen: str):
+        super().__init__(nombre, estado, edicion, rareza)
+
+
+        if imagen is None or not imagen.strip():
+            print('Imagen inválida')
             return
 
-        if type(anchura) == str or anchura <= 0:
-            print('Anchura inválida')
-            return
+        self.__imagen = imagen
+        self.__firma = False
 
-        if material is None or material.upper() not in ['PVC','RESINA','METAL']:
-            print('Material inválido')
-            return
-
-        self.__altura = altura
-        self.__anchura = anchura
-        self.__material = material
 
     def tasar(self) -> float:
-        precio_final = (self.__altura * self.__anchura)*0.5
+        precio_final = 50
         match super().estado:
             case 'PERFECTO':
-                precio_final = precio_final + (precio_final*0.5)
+                precio_final = precio_final + (precio_final * 0.5)
             case 'BUENO':
-                precio_final = precio_final + (precio_final*0.3)
+                precio_final = precio_final + (precio_final * 0.3)
             case 'ACEPTABLE':
-                precio_final = precio_final + (precio_final*0.1)
+                precio_final = precio_final + (precio_final * 0.1)
             case 'MALO':
-                precio_final = precio_final - (precio_final*0.25)
+                precio_final = precio_final - (precio_final * 0.25)
+
+        match super().rareza:
+            case 'LEGENDARIO':
+                precio_final = precio_final + (precio_final * 0.5)
+            case 'RARO':
+                precio_final = precio_final + (precio_final * 0.3)
+            case 'COMÚN':
+                precio_final = precio_final + (precio_final * 0.1)
+
+        if self.__firma == True:
+            precio_final = precio_final * 2
 
 
+        super().precio = precio_final
+
+        return precio_final
+
+    def firmar_carta(self) -> bool:
+        if self.__firma == True:
+            return False
+
+        self.__firma = True
+
+        return True
+
+    def __str__(self):
+        inicial = super().__str__()
+        return inicial + f" Imagen: {self.__imagen} \n Firmada: {self.__firma}"
 
 
-
-    #    __estado: str -> [PERFECTO, BUENO, ACEPTABLE, MALO]
-
-     #   __rareza: str -> [LEGENDARIO, RARO, COMÚN]

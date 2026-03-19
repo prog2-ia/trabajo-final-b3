@@ -97,6 +97,8 @@ class Pieza(ABC) :
         pass
 
 
+    def __str__(self) -> str:
+        return f"Nombre: {self.__nombre} \n Estado: {self.__estado} \n Edición: {self.__edicion} \n Rareza: {self.__rareza} \n Precio: {self.__precio}"
 
 
 
