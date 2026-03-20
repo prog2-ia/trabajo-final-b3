@@ -13,7 +13,7 @@ class Usuario :
 
         ---MÉTODOS---
 
-            anyadir_colecciones( coleccion : list[coleccion] )-> bool
+            anyadir_colecciones( coleccion : list[coleccion] ) -> bool
                 añade una coleccion
 
             eliminar_coleccion(self , coleccion : list[coleccion] ) -> bool
@@ -25,6 +25,7 @@ class Usuario :
                 Longitud de la lista de colecciones
 
     """
+
     def __init__(self , email : str  , nombre : str  , colecciones : list[Coleccion] = None)  :
 
         if email is None or not email.strip() :
@@ -40,7 +41,6 @@ class Usuario :
         else :
             self.__colecciones = colecciones
 
-
     #--------------------------PROPIEDADES DE LOS ATRIBUTOS----------------------------------------------
 
     @property
@@ -55,7 +55,8 @@ class Usuario :
     def colecciones(self) -> list[Coleccion] :
         return self.__colecciones
 
-    #------------------------------METODOS----------------------------------------------------------------
+    #------------------------------MÉTODOS----------------------------------------------------------------
+
     def anyadir_coleccion(self , coleccion : list[Coleccion] ) -> bool:
 
         if coleccion is None or coleccion == [] :
@@ -80,5 +81,4 @@ class Usuario :
 
     def __len__(self) -> int :
         return len( self.__colecciones )
-
     
