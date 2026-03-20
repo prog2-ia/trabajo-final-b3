@@ -16,16 +16,13 @@ class Figura(Pieza):
 
         altura = int(altura)
         if type(altura) == str or altura <= 0:
-            print('Altura inválida')
             return
 
         anchura = int(anchura)
         if type(anchura) == str or anchura <= 0:
-            print('Anchura inválida')
             return
 
         if material is None or material.upper() not in ['PVC', 'RESINA', 'METAL']:
-            print('Material inválido')
             return
 
         self.__altura = altura

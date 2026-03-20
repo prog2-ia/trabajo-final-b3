@@ -28,12 +28,10 @@ class Usuario :
     def __init__(self , email : str  , nombre : str  , colecciones : list[Coleccion] = None)  :
 
         if email is None or not email.strip() :
-            print('Error email incorrecto')
             return
         self.__email = email
 
         if nombre is None or not nombre.strip() :
-            print('Valo de nombre incorrecto')
             return
         self.__nombre = nombre
 

@@ -12,7 +12,6 @@ class Carta(Pieza):
 
 
         if imagen is None or not imagen.strip():
-            print('Imagen inválida')
             return
 
         self.__imagen = imagen

@@ -12,19 +12,15 @@ class Pieza(ABC) :
     """
     def __init__(self, nombre: str, estado: str, edicion: str, rareza: str) -> None:
         if nombre is None or not nombre.strip():
-            print("Nombre inválido")
             return
 
         if estado is None or not estado.strip() or estado.upper() not in ['PERFECTO', 'BUENO', 'ACEPTABLE', 'MALO']:
-            print("Estado inválido")
             return
 
         if edicion is None or not edicion.strip():
-            print('Edición inválido')
             return
 
         if rareza is None or not rareza.strip() or rareza.upper() not in ['LEGENDARIO', 'RARO', 'COMUN','COMÚN']:
-            print('Rareza inválida')
             return
 
         self.__nombre = nombre
