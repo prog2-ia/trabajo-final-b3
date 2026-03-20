@@ -1,5 +1,6 @@
-from ui.interfaz import  Interfaz
+# from ui.interfaz import  Interfaz
+from entidades.piezas.figura import Figura
 
 if __name__ == '__main__' :
-    interfaz = Interfaz()
-    interfaz.parte_usuarios()
+    figura_1= Figura(nombre='Diego', estado= 'Bueno', edicion='primera', rareza='legendario', altura=12, anchura=12, material='PVC' )
+    print(figura_1.tasar())

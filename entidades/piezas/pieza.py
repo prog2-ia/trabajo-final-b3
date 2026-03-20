@@ -8,7 +8,7 @@ class Pieza(ABC) :
 
         __estado: str -> [PERFECTO,BUENO,ACEPTABLE,MALO]
 
-        __rareza: str -> [LEGENDARIO,RARO,COMÚN]
+        __rareza: str -> [LEGENDARIO,RARO,COMUN]
     """
     def __init__(self, nombre: str, estado: str, edicion: str, rareza: str) -> None:
         if nombre is None or not nombre.strip():
@@ -23,7 +23,7 @@ class Pieza(ABC) :
             print('Edición inválido')
             return
 
-        if rareza is None or not rareza.strip() or rareza.upper() not in ['LEGENDARIO', 'RARO', 'COMÚN']:
+        if rareza is None or not rareza.strip() or rareza.upper() not in ['LEGENDARIO', 'RARO', 'COMUN','COMÚN']:
             print('Rareza inválida')
             return
 
@@ -72,7 +72,7 @@ class Pieza(ABC) :
             self.__rareza = 'LEGENDARIO'
 
 
-        if self.__rareza == 'COMÚN':
+        if self.__rareza == 'COMUN':
             self.__rareza = 'RARO'
 
         return True
@@ -93,10 +93,30 @@ class Pieza(ABC) :
 
         return True
 
-    @abstractmethod
-    def tasar(self) -> float:
-        pass
 
+    def tasar(self) -> float:
+
+        precio_final = 50
+
+        match self.estado:
+            case 'PERFECTO':
+                precio_final = precio_final + (precio_final * 0.5)
+            case 'BUENO':
+                precio_final = precio_final + (precio_final * 0.3)
+            case 'ACEPTABLE':
+                precio_final = precio_final + (precio_final * 0.1)
+            case 'MALO':
+                precio_final = precio_final - (precio_final * 0.25)
+
+        match self.rareza:
+            case 'LEGENDARIO':
+                precio_final = precio_final + (precio_final * 0.5)
+            case 'RARO':
+                precio_final = precio_final + (precio_final * 0.3)
+            case 'COMUN':
+                precio_final = precio_final + (precio_final * 0.1)
+
+        return precio_final
 
     def __eq__(self, other) -> bool:
         if isinstance(other, Pieza):
