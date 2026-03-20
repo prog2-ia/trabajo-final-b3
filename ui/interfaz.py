@@ -9,7 +9,7 @@ class Interfaz :
 
         while True :
             print ('================================================================================')
-            print('                GESTOR DE PIEZAS DE COLECCIÓN               ')           
+            print('                GESTOR DE PIEZAS DE COLECCIÓN -> USUARIOS               ')           
             print('================================================================================')
 
             print(
@@ -27,7 +27,8 @@ class Interfaz :
                     print('\n................................................................')
                     print('                LISTA DE USUARIOS              ')           
                     print('................................................................\n')
-                    self.__coordinador.listar_usuarios()
+                    for usuario in self.__coordinador.listar_usuarios() :
+                        print(usuario)
                 case '1' :
                     print('\n................................................................')
                     print('                REGISTRO DE USUARIO              ')           
@@ -48,18 +49,18 @@ class Interfaz :
                     resultado = self.__coordinador.iniciar_sesion_usuario(email= email , nombre= nombre)
                     print(f'----{resultado}----')
                     if resultado == 'Usuario iniciado correctamente' : 
-                        self.parte_colecciones()
+                        self.parte_colecciones(nombre)
                 case '3' :
                     return
                 case _ :
                     print('\n ---- Valor incorrecto ----')
 
-    def parte_colecciones(self):
+    def parte_colecciones(self , nombre):
         
         self.__coordinador.inicializar_colecciones()
         while True:
             print ('\n================================================================================')
-            print('                GESTOR DE COLECCIONES               ')           
+            print(f'                GESTOR DE COLECCIONES DEL USUARIO : {nombre}              ')           
             print('================================================================================')
 
             print(
@@ -77,8 +78,8 @@ class Interfaz :
                     print('\n................................................................')
                     print('                LISTA DE COLECCIÓN              ')           
                     print('................................................................\n')
-
-                    self.__coordinador.listar_colecciones()
+                    for coleccion in self.__coordinador.listar_colecciones() : 
+                        print(coleccion)
 
                 case '1':
                     print('\n................................................................')
@@ -101,16 +102,16 @@ class Interfaz :
                     id = input('Identificador >  ')
                     resultado = self.__coordinador.seleccionar_coleccion(id)
                     print(f'----{resultado}----')
-                    if resultado != 'coleccion id : {id} no encontrada' : 
-                        self.parte_gestion_coleccion_unica(id)
+                    if resultado != f'coleccion id : {id} no encontrada' : 
+                        self.parte_gestion_coleccion_unica(id, nombre)
 
                 case '4':
-                    self.parte_usuarios()
                     break 
                 case _:
                     print('\n Valor incorrecto')
 
-    def parte_gestion_coleccion_unica(self,id) : 
+    def parte_gestion_coleccion_unica(self,id , usuario ) : 
+
         while True:
 
             print ('\n================================================================================')
@@ -136,22 +137,26 @@ class Interfaz :
                     print('\n................................................................')
                     print('                LISTA DE PIEZAS DE COLECCIÓN              ')           
                     print('................................................................\n')
-
-                    self.__coordinador.obtener_piezas()
+                    
+                    for pieza in self.__coordinador.obtener_piezas() : 
+                        print(pieza)
 
                 case '1':
                     print('\n................................................................')
                     print('                LISTA DE FIGURAS              ')           
                     print('................................................................\n')
 
-                    self.__coordinador.obtener_figuras()
+                    for pieza in self.__coordinador.obtener_figuras() : 
+                        print(pieza)
+
 
                 case '2':
                     print('\n................................................................')
                     print('                LISTA DE CARTAS               ')           
                     print('................................................................\n')
 
-                    self.__coordinador.obtener_cartas()
+                    for pieza in self.__coordinador.obtener_cartas() : 
+                        print(pieza)
 
                 case '3':
                     print('\n................................................................')
@@ -168,14 +173,14 @@ class Interfaz :
                     if tipo.upper() == 'CARTA' :
 
                         imagen = input('imagen de la carta(str) > ')
-                        self.__coordinador.anyadir_carta(nombre , estado , edicion , rareza , imagen )
+                        print(self.__coordinador.anyadir_carta(nombre , estado , edicion , rareza , imagen ) )
 
                     elif tipo.upper() =='FIGURA' :
 
                         altura = input('altura de la figura > ')
                         anchura = input('anchura de la figura > ')
                         materiales = input('materiale del que está hecha : valores posibles [PVC,RESINA,METAL] > ')
-                        self.__coordinador.anyadir_figura(nombre , estado , edicion , rareza , altura , anchura , materiales )
+                        print( self.__coordinador.anyadir_figura(nombre , estado , edicion , rareza , altura , anchura , materiales ) ) 
                     else  : 
                         print('\n----Tipo indicado incorrecto----')
                 case '4' : 
@@ -183,14 +188,28 @@ class Interfaz :
                     print('                ELIMINAR PIEZA DE COLECCIÓN              ')           
                     print('................................................................\n')
                     nombre = input('\n Nombre de la pieza > ')
-                    self.__coordinador.eliminar_pieza(nombre)
+                    print ( self.__coordinador.eliminar_pieza(nombre) )
                 case '5' :
                     print('\n................................................................')
-                    print('                ELIMINAR PIEZA DE COLECCIÓN              ')           
+                    print('                REPARAR PIEZA DE COLECCIÓN              ')           
                     print('................................................................\n')
                     nombre = input('\n Nombre de la pieza > ')
-                    self.__coordinador.reparar_pieza(nombre)
+                    print( self.__coordinador.reparar_pieza(nombre) ) 
+
+                case '6' : 
+                    print('\n................................................................')
+                    print('                MEJORAR PIEZA DE COLECCIÓN              ')           
+                    print('................................................................\n')
+                    nombre = input('\n Nombre de la pieza > ')
+                    print ( self.__coordinador.mejorar_pieza(nombre) )
+
+                case '7' :
+                    print('\n................................................................')
+                    print('                TASAR PIEZA DE COLECCIÓN              ')           
+                    print('................................................................\n')
+                    nombre = input('\n Nombre de la pieza > ')
+                    print ( self.__coordinador.tasar_pieza(nombre) )
                 case '8':
-                    self.parte_colecciones()
+                    break 
                 case _:
                     print('\n Valor incorrecto')
