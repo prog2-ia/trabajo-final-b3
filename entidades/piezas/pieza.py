@@ -8,7 +8,7 @@ class Pieza(ABC) :
 
         __estado: str -> [PERFECTO,BUENO,ACEPTABLE,MALO]
 
-        __rareza: str -> [LEGENDARIO,RARO,COMUN]
+        __rareza: str -> [LEGENDARIO,RARO,COMUN, COMÚN]
     """
     def __init__(self, nombre: str, estado: str, edicion: str, rareza: str) -> None:
         if nombre is None or not nombre.strip():
@@ -116,8 +116,7 @@ class Pieza(ABC) :
 
     def __eq__(self, other) -> bool:
         if isinstance(other, Pieza):
-            return (self.__nombre == other.nombre and self.__estado == other.estado and
-                    self.__rareza == other.rareza and self.__edicion == other.edicion)
+            return (self.__nombre == other.nombre) 
 
     def __str__(self) -> str:
         return f" Nombre: {self.__nombre}, Estado: {self.__estado}, Edición: {self.__edicion}, Rareza: {self.__rareza}, Precio: {self.__precio},"

@@ -56,7 +56,7 @@ class GestorPiezas:
             return('Edición inválido')
             
 
-        if rareza is None or not rareza.strip() or rareza.upper() not in ['LEGENDARIO', 'RARO', 'COMÚN']:
+        if rareza is None or not rareza.strip() or rareza.upper() not in ['LEGENDARIO', 'RARO', 'COMÚN' , 'COMUN']:
             return('Rareza inválida')
         
         return None 

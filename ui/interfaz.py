@@ -126,8 +126,7 @@ class Interfaz :
                 '\n 5. Reparar una pieza de la colección'
                 '\n 6. Mejorar una pieza de la colección'
                 '\n 7. Tasar una pieza de la colección'
-                '\n 8. Seleccionar una pieza de la colección'
-                '\n 9. Retroceder'
+                '\n 8. Retroceder'
             )
 
             entrada = input('\n Seleccione una opción > ')

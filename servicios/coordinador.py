@@ -29,8 +29,10 @@ class Coordinador  :
 
     def inicializar_colecciones(self) :
         self.__gestorcolecciones = Gestorcolecciones(self.__gestorusuarios.usuario_actual)
+        
 
     def listar_colecciones(self) -> str :
+        print('GOLA')
         return self.__gestorcolecciones.listar_colecciones()
 
     def crear_nueva_coleccion(self) -> str:
@@ -52,7 +54,7 @@ class Coordinador  :
         return self.__gestorcolecciones.obtener_cartas()
     
 
-#self.__coordinador.anyadir_figura(nombre , estado , edicion , rareza , altura , anchura , materiales )
+    #self.__coordinador.anyadir_figura(nombre , estado , edicion , rareza , altura , anchura , materiales )
     def anyadir_figura(self,nombre , estado , edicion , rareza , altura ,anchura , materiales) : 
         
         figura = self.__gestorpiezas.crear_figura(nombre , estado , edicion , rareza , altura ,anchura , materiales)
@@ -60,10 +62,10 @@ class Coordinador  :
         if type(figura) == str :
             print (figura) 
 
-        print('----Error al añadir figura----') if self.__gestorcolecciones.anyadir_pieza(figura) == False else '----Figura añadida----'
+        print('\n----Error al añadir figura----') if self.__gestorcolecciones.anyadir_pieza(figura) == False else print('\n----Figura añadida----')
         print(figura)
 
-#self.__coordinador.anyadir_carta(nombre , estado , edicion , rareza , imagen )
+    #self.__coordinador.anyadir_carta(nombre , estado , edicion , rareza , imagen )
 
     def anyadir_carta(self , nombre , estado ,edicion , rareza , imagen) : 
 
@@ -71,7 +73,7 @@ class Coordinador  :
         if type(carta) == str :
             print(carta)  
         
-        print('----Error al añadir Carta----') if self.__gestorcolecciones.anyadir_pieza(carta) == False else '----Carta añadida----'
+        print('\n----Error al añadir Carta----') if self.__gestorcolecciones.anyadir_pieza(carta) == False else print('\n----Carta añadida----')
         print(carta)
 
     def eliminar_pieza(self , pieza) : 
