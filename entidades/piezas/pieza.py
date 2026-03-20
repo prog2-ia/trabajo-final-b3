@@ -2,15 +2,29 @@ from abc import ABC, abstractmethod
 
 class Pieza(ABC) :
     """
-    Pieza es una clase que representa una pieza de una colección
+        Clase que representa los elementos de una colección
+        Clase abstracta cuyos hijos serán carta y figura
 
-    ---ATRIBUTOS---
+        ---ATRIBUTOS---
 
-        __estado: str -> [PERFECTO,BUENO,ACEPTABLE,MALO]
+            __nombre: str
+            __estado: str -> [PERFECTO,BUENO,ACEPTABLE,MALO]
+            __edicion: str
+            __rareza: str -> [LEGENDARIO,RARO,COMUN,COMÚN]
+            __precio: float
 
-        __rareza: str -> [LEGENDARIO,RARO,COMUN, COMÚN]
+        ---MÉTODOS---
+
+            mejorar_rareza() -> bool
+
+            mejorar_estado() -> bool
+
+
+
     """
+
     def __init__(self, nombre: str, estado: str, edicion: str, rareza: str) -> None:
+
         if nombre is None or not nombre.strip():
             return
 
@@ -29,7 +43,7 @@ class Pieza(ABC) :
         self.__rareza = rareza.upper()
         self.__precio = 0
 
-    #PROPIEDADES
+    # --------------------------PROPIEDADES DE LOS ATRIBUTOS----------------------------------------------
 
     @property
     def nombre(self) -> str:
@@ -58,6 +72,8 @@ class Pieza(ABC) :
             return
 
         self.__precio = value
+
+    #------------------------------MÉTODOS----------------------------------------------------------------
 
     def mejorar_rareza(self) -> bool:
 
@@ -88,7 +104,6 @@ class Pieza(ABC) :
             self.__estado = 'ACEPTABLE'
 
         return True
-
 
     def tasar(self) -> float:
 

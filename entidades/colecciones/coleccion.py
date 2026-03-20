@@ -4,7 +4,7 @@ from ..piezas.figura import Figura
 
 class Coleccion :
     """
-        Clase que representa una coleccíon
+        Clase que representa una colección de un usuario, este último puede tener varias colecciones distintas
 
         ---ATRIBUTOS---
 
@@ -14,12 +14,13 @@ class Coleccion :
         ---MÉTODOS---
 
             agregar_pieza( pieza : Pieza ) -> bool
-                añade una pieza a una colección, si el parámetro dado no
-                es una pieza o está repetido notifica un error
+                añade una pieza a una colección
 
-            eliminar:pieza( pieza : Pieza ) -> bool
-                elimina una pieza de una coleccion, si el parámetro no es
-                pieza o no se encuentra en esa coleccion notifica un error
+            eliminar_pieza( pieza : Pieza ) -> bool
+                elimina una pieza de una coleccion
+
+            __eq__(  ):
+
 
             __str__():
                 imprimre el id y número de piezas de una colección
@@ -55,7 +56,7 @@ class Coleccion :
             return
         self.__piezas = value.copy()
 
-    # ------------------------------METODOS----------------------------------------------------------------
+    # ------------------------------MÉTODOS----------------------------------------------------------------
     
     def agregar_pieza(self, pieza: Pieza) -> bool:
 
