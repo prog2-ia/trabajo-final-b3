@@ -32,7 +32,6 @@ class Coordinador  :
         
 
     def listar_colecciones(self) -> str :
-        print('GOLA')
         return self.__gestorcolecciones.listar_colecciones()
 
     def crear_nueva_coleccion(self) -> str:
@@ -76,5 +75,21 @@ class Coordinador  :
         print('\n----Error al añadir Carta----') if self.__gestorcolecciones.anyadir_pieza(carta) == False else print('\n----Carta añadida----')
         print(carta)
 
-    def eliminar_pieza(self , pieza) : 
-        self.__gestorcolecciones.eliminar_pieza(pieza)
+    def eliminar_pieza(self , nombre) : 
+        pieza = self.__gestorpiezas.crear_carta(nombre , 'MALO','FALSA','COMUN','IMAGEN')
+        print(f'----Pieza {nombre} eliminada----')  if self.__gestorcolecciones.eliminar_pieza(pieza) == True else print(f'----Pieza {nombre} no encontrada----')
+        
+        
+    def reparar_pieza(self , nombre) : 
+        
+        pieza_falsa = self.__gestorpiezas.crear_carta(nombre , 'MALO','FALSA','COMUN','IMAGEN')
+        pieza_real = self.__gestorcolecciones.obtener_pieza(pieza_falsa)
+        
+        print(f'----Pieza : {nombre} reparada---- ') if self.__gestorpiezas.reparar_pieza(pieza_real) == True else  print('----Error al reparar la pieza----')
+        
+    def mejorar_pieza(self , nombre) : 
+        
+        pieza_falsa = self.__gestorpiezas.crear_carta(nombre , 'MALO','FALSA','COMUN','IMAGEN')
+        pieza_real = self.__gestorcolecciones.obtener_pieza(pieza_falsa)
+        
+        print(f'----Pieza : {nombre} Mejorada---- ') if self.__gestorpiezas.mejorar_pieza(pieza_real) == True else  print('----Error al Mejorar la pieza----')

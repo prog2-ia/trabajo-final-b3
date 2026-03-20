@@ -178,8 +178,19 @@ class Interfaz :
                         self.__coordinador.anyadir_figura(nombre , estado , edicion , rareza , altura , anchura , materiales )
                     else  : 
                         print('\n----Tipo indicado incorrecto----')
-
-                case '9':
+                case '4' : 
+                    print('\n................................................................')
+                    print('                ELIMINAR PIEZA DE COLECCIÓN              ')           
+                    print('................................................................\n')
+                    nombre = input('\n Nombre de la pieza > ')
+                    self.__coordinador.eliminar_pieza(nombre)
+                case '5' :
+                    print('\n................................................................')
+                    print('                ELIMINAR PIEZA DE COLECCIÓN              ')           
+                    print('................................................................\n')
+                    nombre = input('\n Nombre de la pieza > ')
+                    self.__coordinador.reparar_pieza(nombre)
+                case '8':
                     self.parte_colecciones()
                 case _:
                     print('\n Valor incorrecto')

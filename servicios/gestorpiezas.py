@@ -60,3 +60,11 @@ class GestorPiezas:
             return('Rareza inválida')
         
         return None 
+    
+    @staticmethod
+    def reparar_pieza(pieza : Pieza) -> bool : 
+        return pieza.mejorar_estado()
+    
+    @staticmethod
+    def mejorar_pieza(pieza : Pieza) -> bool : 
+        return pieza.mejorar_rareza()

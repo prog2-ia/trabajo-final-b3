@@ -55,5 +55,21 @@ class Gestorcolecciones:
     def anyadir_pieza(self , pieza) : 
         return self.__coleccione_actual.agregar_pieza(pieza)
     
-    def eliminar_pieza(self ,pieza) : 
-        pass
+    def eliminar_pieza(self ,pieza)-> True :
+        
+        nueva_lista = self.__coleccione_actual.piezas
+        pieza_eliminar = self.obtener_pieza(pieza)
+        
+        if pieza_eliminar is not None : 
+            nueva_lista.remove(pieza_eliminar)
+            self.__coleccione_actual = nueva_lista
+            return True 
+        return False
+     
+    
+    def obtener_pieza(self , pieza) ->  None  : 
+        
+        for pieza_encoleccion in self.__coleccione_actual.piezas :
+            if pieza_encoleccion == pieza : 
+                return pieza_encoleccion 
+        return None 
