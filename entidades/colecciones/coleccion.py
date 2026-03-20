@@ -41,6 +41,10 @@ class Coleccion :
     @property
     def identificador(self) -> int:
         return self.__identificador
+
+    @property
+    def piezas(self) -> list[Pieza]:
+        return  self.__piezas.copy()
     
     def agregar_pieza(self, pieza: Pieza) -> bool:
 
@@ -78,6 +82,7 @@ class Coleccion :
             if isinstance(pieza,Carta):
                 cartas.append(pieza)
         return cartas.copy()
+
 
 
     def __eq__(self, other) -> bool:
