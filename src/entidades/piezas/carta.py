@@ -3,7 +3,23 @@ from .pieza import Pieza
 
 class Carta(Pieza):
     """
+        Carta es una subclase de Pieza que representa una carta coleccionable.
 
+        ---ATRIBUTOS---
+
+            __imagen : str
+            __firma : bool
+
+        ---MÉTODOS---
+
+            tasar() -> float :
+                Calcula el precio final de la carta basándose en la tasación base de la pieza (padre) y duplica su valor si la carta está firmada. Actualiza y devuelve el precio final
+
+            firmar_carta() -> bool :
+                Marca la carta como firmada. Devuelve True si se firmó con éxito, y False si la carta ya estaba firmada previamente
+
+            __str__() -> str :
+                Devuelve una representación de la información base de la pieza con la URL de la imagen y el estado de la firma
 
     """
 

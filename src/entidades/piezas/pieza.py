@@ -2,22 +2,35 @@ from abc import ABC, abstractmethod
 
 class Pieza(ABC) :
     """
-        Clase que representa los elementos de una colección
-        Clase abstracta cuyos hijos serán carta y figura
+        Clase que representa los elementos de una colección.
+        Clase abstracta cuyos hijos serán Carta y Figura.
 
         ---ATRIBUTOS---
 
-            __nombre: str
-            __estado: str -> [PERFECTO,BUENO,ACEPTABLE,MALO]
-            __edicion: str
-            __rareza: str -> [LEGENDARIO,RARO,COMUN,COMÚN]
-            __precio: float
+            __nombre : str
+            __estado : str -> ['PERFECTO', 'BUENO', 'ACEPTABLE', 'MALO']
+            __edicion : str
+            __rareza : str -> ['LEGENDARIO', 'RARO', 'COMUN', 'COMÚN']
+            __precio : float
 
         ---MÉTODOS---
 
-            mejorar_rareza() -> bool
+            mejorar_rareza() -> bool :
+                Mejora la rareza de la pieza a la siguiente calidad. Devuelve True si se mejoró exitosamente, False si
+                ya tiene la rareza al máximo
 
-            mejorar_estado() -> bool
+            mejorar_estado() -> bool :
+                Mejora el estado de la pieza a la siguiente calidad. Devuelve True si se mejoró, False si ya tiene
+                el estado al máximo
+
+            tasar() -> float :
+                Calcula y devuelve un valor (precio) de de la pieza aplicando modificadores según su estado y rareza
+
+            __eq__(other) -> bool :
+                Compara si la pieza actual es igual a otra basándose únicamente en su nombre
+
+            __str__() -> str :
+                Devuelve una representación en cadena de texto con el nombre, estado, rareza y  precio de la pieza
 
 
 

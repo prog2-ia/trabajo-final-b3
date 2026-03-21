@@ -13,16 +13,20 @@ class Usuario :
 
         ---MÉTODOS---
 
-            anyadir_colecciones( coleccion : list[coleccion] ) -> bool
-                añade una coleccion
+            anyadir_coleccion(coleccion : list[Coleccion]) -> bool :
+                Añade una colección a la lista de colecciones del usuario
 
-            eliminar_coleccion(self , coleccion : list[coleccion] ) -> bool
-                elimina una coleccion
+            eliminar_coleccion(coleccion : list[Coleccion]) -> bool :
+                Elimina la colección indicada de la lista de colecciones
 
-            __str__()
+            __eq__(other) -> bool :
+                Compara si el usuario actual es igual a otro basándose en su email y nombre
 
-            __len()__
-                Longitud de la lista de colecciones
+            __str__() -> str :
+                Devuelve una representación en cadena de texto con el email, nombre y número de colecciones
+
+            __len()__ -> int :
+                Devuelve la longitud de la lista de colecciones (la cantidad de colecciones que posee)
 
     """
 
@@ -41,7 +45,11 @@ class Usuario :
         else :
             self.__colecciones = colecciones
 
-    #--------------------------PROPIEDADES DE LOS ATRIBUTOS----------------------------------------------
+    """
+    -------------------------------------------------------------------------------------------------------------------------------------
+                                PROPIEDADES DE LOS ATRIBUTOS
+    -------------------------------------------------------------------------------------------------------------------------------------
+    """
 
     @property
     def email(self) -> str :
@@ -55,7 +63,11 @@ class Usuario :
     def colecciones(self) -> list[Coleccion] :
         return self.__colecciones
 
-    #------------------------------MÉTODOS----------------------------------------------------------------
+    """
+    -------------------------------------------------------------------------------------------------------------------------------------
+                                MÉTODOS
+    -------------------------------------------------------------------------------------------------------------------------------------
+    """
 
     def anyadir_coleccion(self , coleccion : list[Coleccion] ) -> bool:
 

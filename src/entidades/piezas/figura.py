@@ -3,12 +3,28 @@ from .pieza import Pieza
 
 class Figura(Pieza):
     """
-    Figura es una subclase de pieza que representa una figura
+        Figura es una subclase de Pieza que representa una figura coleccionable.
 
-    ---ATRIBUTOS---
+        ---ATRIBUTOS---
 
-        __material: str -> [PVC,RESINA,METAL]
+            __altura : float
+            __anchura : float
+            __material : str -> ['PVC', 'RESINA', 'METAL']
 
+        ---MÉTODOS---
+
+            tasar() -> float :
+                Calcula el precio final de la figura basándose en la tasación base de la pieza (padre), aplicando
+                modificadores adicionales por su tamaño (altura y anchura) y su material. Actualiza y devuelve el
+                precio final
+
+            aumentar_tamanyo(altura : float, anchura : float) -> bool :
+                Actualiza el tamaño de la figura. Devuelve True si se cambiaron correctamente, y False si los
+                valores no son numéricos, o si son menores o iguales al tamaño actual
+
+            __str__() -> str :
+                Devuelve una representación en cadena de texto con la información base de la pieza con
+                la altura, anchura y material específicos de la figura
     """
 
     def __init__(self, nombre: str, estado: str, edicion: str, rareza: str, altura: float, anchura: float, material: str):

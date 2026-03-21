@@ -8,22 +8,30 @@ class Coleccion :
 
         ---ATRIBUTOS---
 
-            __id : str
+            __identificador : str
             __piezas : list[Pieza]
 
         ---MÉTODOS---
 
-            agregar_pieza( pieza : Pieza ) -> bool
-                añade una pieza a una colección
+            agregar_pieza(pieza : Pieza) -> bool :
+                Añade una pieza a la colección. Devuelve True si se añade correctamente, y False si el objeto no es
+                una Pieza o si ya se encuentra en la colección
 
-            eliminar_pieza( pieza : Pieza ) -> bool
-                elimina una pieza de una coleccion
+            eliminar_pieza(pieza : Pieza) -> bool :
+                Elimina la pieza indicada de la colección. Devuelve True si se elimina con éxito, y False si no
+                existe en la colección o no es una Pieza válida
 
-            __eq__(  ):
-                Compara 2 colecciones 
+            get_figuras() -> list[Figura] :
+                Filtra y devuelve una lista con todas las piezas de tipo Figura almacenadas en la colección
 
-            __str__():
-                imprimre el id y número de piezas de una colección
+            get_cartas() -> list[Carta] :
+                Filtra y devuelve una lista con todas las piezas de tipo Carta almacenadas en la colección
+
+            __eq__(other) -> bool :
+                Compara si la colección actual es igual a otra basándose únicamente en su identificador
+
+            __str__() -> str :
+                Devuelve una cadena de texto con el identificador de la colección y la cantidad de piezas que contiene
 
     """
 

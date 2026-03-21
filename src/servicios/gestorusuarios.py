@@ -8,6 +8,210 @@ class GestorUsuarios :
 
 
         ---ATRIBUTOS---
+```
+================================================================================
+                GESTOR DE PIEZAS DE COLECCIÓN -> USUARIOS
+================================================================================
+ 0. Lista de usuarios
+ 1. Registrar nuevo usuario
+ 2. Iniciar sesion con un usuario
+ 3. Salir
+
+ Seleccione una opción > 1
+
+................................................................
+                REGISTRO DE USUARIO
+................................................................
+
+Email : ejemplo
+Nombre : Pepe
+----Usuario registrado correctamente----
+================================================================================
+                GESTOR DE PIEZAS DE COLECCIÓN -> USUARIOS
+================================================================================
+ 0. Lista de usuarios
+ 1. Registrar nuevo usuario
+ 2. Iniciar sesion con un usuario
+ 3. Salir
+
+ Seleccione una opción > 2
+
+................................................................
+                INICIO DE SESIÓN
+................................................................
+
+Email : ejemplo
+Nombre : Pepe
+----Usuario iniciado correctamente----
+
+================================================================================
+                GESTOR DE COLECCIONES DEL USUARIO : Pepe
+================================================================================
+0 .  Lista de Colecciones
+ 1. Crear coleccion
+ 2. Eliminar Coleccion
+ 3. Seleccionar coleccion
+ 4. Retroceder
+
+ Seleccione una opción > 1
+
+................................................................
+                CREACIÓN DE COLECCIÓN
+................................................................
+
+----Nueva coleccion id :1 creada correctamente----
+
+================================================================================
+                GESTOR DE COLECCIONES DEL USUARIO : Pepe
+================================================================================
+0 .  Lista de Colecciones
+ 1. Crear coleccion
+ 2. Eliminar Coleccion
+ 3. Seleccionar coleccion
+ 4. Retroceder
+
+ Seleccione una opción > 3
+
+................................................................
+                SELECCIONAR COLECCIÓN
+................................................................
+
+Identificador >  1
+----colección id : 1 seleccionada----
+
+================================================================================
+        ```
+================================================================================
+                GESTOR DE PIEZAS DE COLECCIÓN -> USUARIOS
+================================================================================
+ 0. Lista de usuarios
+ 1. Registrar nuevo usuario
+ 2. Iniciar sesion con un usuario
+ 3. Salir
+
+ Seleccione una opción > 1
+
+................................................................
+                REGISTRO DE USUARIO
+................................................................
+
+Email : ejemplo
+Nombre : Pepe
+----Usuario registrado correctamente----
+================================================================================
+                GESTOR DE PIEZAS DE COLECCIÓN -> USUARIOS
+================================================================================
+ 0. Lista de usuarios
+ 1. Registrar nuevo usuario
+ 2. Iniciar sesion con un usuario
+ 3. Salir
+
+ Seleccione una opción > 2
+
+................................................................
+                INICIO DE SESIÓN
+................................................................
+
+Email : ejemplo
+Nombre : Pepe
+----Usuario iniciado correctamente----
+
+================================================================================
+                GESTOR DE COLECCIONES DEL USUARIO : Pepe
+================================================================================
+0 .  Lista de Colecciones
+ 1. Crear coleccion
+ 2. Eliminar Coleccion
+ 3. Seleccionar coleccion
+ 4. Retroceder
+
+ Seleccione una opción > 1
+
+................................................................
+                CREACIÓN DE COLECCIÓN
+................................................................
+
+----Nueva coleccion id :1 creada correctamente----
+
+================================================================================
+                GESTOR DE COLECCIONES DEL USUARIO : Pepe
+================================================================================
+0 .  Lista de Colecciones
+ 1. Crear coleccion
+ 2. Eliminar Coleccion
+ 3. Seleccionar coleccion
+ 4. Retroceder
+
+ Seleccione una opción > 3
+
+................................................................
+                SELECCIONAR COLECCIÓN
+................................................................
+
+Identificador >  1
+----colección id : 1 seleccionada----
+
+================================================================================
+                GESTOR DE COLECCIÓN : 1
+================================================================================
+0.  Lista de Piezas de la colección
+ 1. Obtener todas las piezas de colección tipo figura
+ 2. Obtener todas las piezas de colección tipo Carta
+ 3. Añadir una pieza a la colección
+ 4. Eliminar una pieza de la colección
+ 5. Reparar una pieza de la colección
+ 6. Mejorar una pieza de la colección
+ 7. Tasar una pieza de la colección
+ 8. Retroceder
+
+ Seleccione una opción > 3
+
+................................................................
+                AÑADIR PIEZA DE COLECCIÓN
+................................................................
+
+Nombre >  Pieza
+Estado : valores posibles [PERFECTO,BUENO,ACEPTABLE,MALO]  >Perfecto
+Edicion >primera
+Rareza : valores posibles [LEGENDARIO,RARO,COMÚN] > legendario
+Tipo de pieza de colección : valores posibles [CARTA , FIGURA] > figura
+altura de la figura > 20
+anchura de la figura > 25
+materiale del que está hecha : valores posibles [PVC,RESINA,METAL] > metal
+
+----Figura añadida----
+  Nombre: Pieza, Estado: PERFECTO, Edición: primera, Rareza: LEGENDARIO, Precio: 0,Altura: 20, Anchura: 25, Material: METAL
+```
+        GESTOR DE COLECCIÓN : 1
+================================================================================
+0.  Lista de Piezas de la colección
+ 1. Obtener todas las piezas de colección tipo figura
+ 2. Obtener todas las piezas de colección tipo Carta
+ 3. Añadir una pieza a la colección
+ 4. Eliminar una pieza de la colección
+ 5. Reparar una pieza de la colección
+ 6. Mejorar una pieza de la colección
+ 7. Tasar una pieza de la colección
+ 8. Retroceder
+
+ Seleccione una opción > 3
+
+................................................................
+                AÑADIR PIEZA DE COLECCIÓN
+................................................................
+
+Nombre >  Pieza
+Estado : valores posibles [PERFECTO,BUENO,ACEPTABLE,MALO]  >Perfecto
+Edicion >primera
+Rareza : valores posibles [LEGENDARIO,RARO,COMÚN] > legendario
+Tipo de pieza de colección : valores posibles [CARTA , FIGURA] > figura
+altura de la figura > 20
+anchura de la figura > 25
+materiale del que está hecha : valores posibles [PVC,RESINA,METAL] > metal
+
+----Figura añadida----
+  Nombre: Pieza, Estado: PERFECTO, Edición: primera, Rareza: LEGENDARIO, Precio: 0,Altura: 20, Anchura: 25, Material: METAL
+```
 
             __lista_usuarios : list[Usuario]  
             __usuario_actual : Usuario -> Propiedad de lectura 

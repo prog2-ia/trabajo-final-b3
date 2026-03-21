@@ -57,7 +57,7 @@ class GestorPiezas:
             return '\n ----Altura inválida----'
 
         if not self.comprobar_numeros(anchura)  :
-            return '\n ----Altura inválida----'
+            return '\n ----Anchura inválida----'
         anchura = int(anchura)
         if anchura <= 0:
             return '\n ----Anchura inválida----'
@@ -116,7 +116,7 @@ class GestorPiezas:
     @staticmethod
     def comprobar_numeros(numeros) -> bool  : 
         for numero in numeros :
-            if numero not in ['1','2','3','4','5','6','7','8','9'] :
+            if numero not in ['0','1','2','3','4','5','6','7','8','9'] :
                 return False
         return True 
     
