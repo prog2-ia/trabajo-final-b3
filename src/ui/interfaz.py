@@ -194,7 +194,7 @@ class Interfaz :
                     print('                REPARAR PIEZA DE COLECCIÓN              ')           
                     print('................................................................\n')
                     nombre = input('\n Nombre de la pieza > ')
-                    print( self.__coordinador.reparar_pieza(nombre) ) 
+                    print( self.__coordinador.reparar_pieza(nombre) )
 
                 case '6' : 
                     print('\n................................................................')
