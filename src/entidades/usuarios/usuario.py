@@ -71,11 +71,11 @@ class Usuario :
     -------------------------------------------------------------------------------------------------------------------------------------
     """
 
-    def anyadir_coleccion(self , coleccion : list[Coleccion] ) -> bool:
+    def anyadir_coleccion(self , lista_colecciones : list[Coleccion] ) -> bool:
 
-        if coleccion is None or coleccion == [] :
+        if lista_colecciones is None or lista_colecciones == [] :
             raise ValueError('Lista de colecciones vacía')
-        self.__colecciones.append(coleccion)
+        self.__colecciones.append(lista_colecciones)
         return True
 
     def eliminar_coleccion(self , coleccion : list[Coleccion]) -> bool:

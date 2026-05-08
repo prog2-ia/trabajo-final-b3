@@ -15,8 +15,7 @@ class Coleccion :
         ---MÉTODOS---
 
             agregar_pieza(pieza : Pieza) -> bool :
-                Añade una pieza a la colección. Devuelve True si se añade correctamente, y False si el objeto no es
-                una Pieza o si ya se encuentra en la colección
+                Añade una pieza a la colección. Devuelve True si se añade correctamente.
 
             eliminar_pieza(pieza : Pieza) -> bool :
                 Elimina la pieza indicada de la colección. Devuelve True si se elimina con éxito, y False si no
@@ -68,8 +67,6 @@ class Coleccion :
     def piezas(self, value):
         if value is None :
             raise  TypeError('Tipo erroneo')
-        elif value == [] :
-            raise  ValueError('Lista de piezas vacía')
         self.__piezas = value.copy()
 
     """
