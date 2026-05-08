@@ -30,16 +30,22 @@ class Figura(Pieza):
     def __init__(self, nombre: str, estado: str, edicion: str, rareza: str, altura: float, anchura: float, material: str):
         super().__init__(nombre, estado, edicion, rareza)
 
+
+        if type(altura) != int and type(altura) != float :
+            raise TypeError('Tipo de dato en altura incorrecto')
+        elif altura <= 0 :
+            raise ValueError('Valor de dato en  altura incorrecto')
         altura = int(altura)
-        if type(altura) == str or altura <= 0:
-            return
+
+        if type(anchura) != int or type(altura) != float :
+            raise TypeError('Tipo de anchura incorrecto')
+        elif anchura <= 0  :
+            raise ValueError('Valor de anchura incorrecto')
 
         anchura = int(anchura)
-        if type(anchura) == str or anchura <= 0:
-            return
 
         if material is None or material.upper() not in ['PVC', 'RESINA', 'METAL']:
-            return
+            raise  ValueError('Valores de material incorrectos')
 
         self.__altura = altura
         self.__anchura = anchura
@@ -72,7 +78,7 @@ class Figura(Pieza):
     def aumentar_tamanyo(self, altura, anchura) -> bool:
 
         if (type(altura) != int and type(altura) != float) or (type(anchura) != int and type(anchura) != float):
-            return False
+            raise  TypeError('Solo se permiten valores numéricos ')
 
         if altura < self.__altura or anchura < self.__anchura:
             return False

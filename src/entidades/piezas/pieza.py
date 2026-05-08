@@ -39,16 +39,16 @@ class Pieza(ABC) :
     def __init__(self, nombre: str, estado: str, edicion: str, rareza: str) -> None:
 
         if nombre is None or not nombre.strip():
-            return
+            raise ValueError('Valor erroneo en nombre')
 
         if estado is None or not estado.strip() or estado.upper() not in ['PERFECTO', 'BUENO', 'ACEPTABLE', 'MALO']:
-            return
+            raise ValueError('Valor erroneo en estado')
 
         if edicion is None or not edicion.strip():
-            return
+            raise ValueError('Valor erroneo en edicion')
 
         if rareza is None or not rareza.strip() or rareza.upper() not in ['LEGENDARIO', 'RARO', 'COMUN','COMÚN']:
-            return
+            raise ValueError('Valor erroneo en rareza')
 
         self.__nombre = nombre
         self.__estado = estado.upper()
@@ -102,7 +102,6 @@ class Pieza(ABC) :
         pass
 
     def tasar(self) -> float:
-
         precio_final = 50
 
         match self.estado:
@@ -127,7 +126,10 @@ class Pieza(ABC) :
 
     def __eq__(self, other) -> bool:
         if isinstance(other, Pieza):
-            return (self.__nombre == other.nombre) 
+            return (self.__nombre == other.nombre)
+        else :
+            raise TypeError('Tipo de other incorrecto')
+
 
     def __str__(self) -> str:
         return f" Nombre: {self.__nombre}, Estado: {self.__estado}, Edición: {self.__edicion}, Rareza: {self.__rareza}, Precio: {self.__precio},"

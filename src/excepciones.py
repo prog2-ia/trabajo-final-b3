@@ -1,0 +1,2 @@
+class Excepciones :
+    pass

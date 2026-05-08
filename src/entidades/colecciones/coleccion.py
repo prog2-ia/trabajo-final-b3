@@ -65,8 +65,8 @@ class Coleccion :
 
     @piezas.setter
     def piezas(self, value):
-        if value is None:
-            return
+        if value is None :
+            raise  TypeError('Tipo erróneo')
         self.__piezas = value.copy()
 
     """
@@ -78,10 +78,10 @@ class Coleccion :
     def agregar_pieza(self, pieza: Pieza) -> bool:
 
         if not isinstance(pieza, Pieza):
-            return False
+            raise TypeError('Tipo de dato pieza equivocado')
 
         if pieza in self.__piezas:
-            return False
+            return False # Excepción piezas ya está
 
         self.__piezas.append(pieza)
 
@@ -90,13 +90,13 @@ class Coleccion :
     def eliminar_pieza(self, pieza: Pieza) -> bool:
 
         if not isinstance(pieza, Pieza):
-            return False
+            raise TypeError('Tipo de dato pieza equivocado')
 
         if pieza in self.__piezas:
             self.__piezas.remove(pieza)
             return True
         else:
-            return False
+            return False #Excepción pieza no está
 
     def get_figuras(self) -> list[Figura]:
 

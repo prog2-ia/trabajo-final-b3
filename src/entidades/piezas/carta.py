@@ -26,9 +26,8 @@ class Carta(Pieza):
     def __init__(self, nombre: str, estado: str, edicion: str, rareza: str, imagen: str):
         super().__init__(nombre, estado, edicion, rareza)
 
-
         if imagen is None or not imagen.strip():
-            return
+            raise ValueError('Valor de imagen incorrecto')
 
         self.__imagen = imagen
         self.__firma = False
@@ -54,7 +53,7 @@ class Carta(Pieza):
 
     def firmar_carta(self) -> bool:
         if self.__firma == True:
-            return False
+            return False # Excepción la carta ya está firmada
 
         self.__firma = True
 

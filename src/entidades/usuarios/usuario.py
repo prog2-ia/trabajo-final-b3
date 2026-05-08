@@ -1,3 +1,4 @@
+
 from ..colecciones.coleccion import Coleccion
 
 class Usuario :
@@ -33,11 +34,11 @@ class Usuario :
     def __init__(self , email : str  , nombre : str  , colecciones : list[Coleccion] = None)  :
 
         if email is None or not email.strip() :
-            return
+            raise ValueError('email erroneo')
         self.__email = email
 
         if nombre is None or not nombre.strip() :
-            return
+            raise  ValueError('nombre erroneo')
         self.__nombre = nombre
 
         if colecciones is None :
@@ -72,7 +73,7 @@ class Usuario :
     def anyadir_coleccion(self , coleccion : list[Coleccion] ) -> bool:
 
         if coleccion is None or coleccion == [] :
-            return  False
+            return  False #Excepción colección está vacía
         self.__colecciones.append(coleccion)
         return True
 
@@ -81,11 +82,11 @@ class Usuario :
         if coleccion in self.__colecciones :
             self.__colecciones.remove(coleccion)
             return True
-        return False
+        return False #Excepción no existe esa colección
 
     def __eq__(self, other) -> bool:
         if not isinstance(other, Usuario):
-            return False
+            raise  TypeException('Tipo de dato other incorrecto')
         return self.email == other.email and self.nombre == other.nombre
 
     def __str__(self) -> str :
