@@ -98,37 +98,68 @@ class Figura(Pieza):
                                 MÉTODOS ABSTRACTOS
     -------------------------------------------------------------------------------------------------------------------------------------
     """
-    def mejorar_rareza(self) -> bool: # Hay una probabilidad de que se mejore
-        #__material : str -> ['PVC', 'RESINA', 'METAL']
-        if self.__material == 'PVC' :
-            dificultad = 1
-        elif self.__material =='RESINA' :
-            dificultad = 2
-        else :
-            dificultad = 3
-        dificultad *= 10
 
-        if  (self.__altura * self.__anchura) > 150  : # Cuanto más grande más dificil de mejorar
-            dificultad  += 5
-        else :
+    def mejorar_rareza(self) -> bool:
+        if self.__rareza == 'LEGENDARIO':
+            return False
+
+        if self.__material == 'PVC':
+            dificultad = 10
+        elif self.__material == 'RESINA':
+            dificultad = 20
+        else: #METAL
+            dificultad = 30
+
+        if (self.__altura * self.__anchura) > 150:
+            dificultad += 5
+        else:
             dificultad += 3
 
+        probabilidad_exito = 100 - dificultad
+        tirada_dado = random.randint(1, 100)
 
-        if n > probabilidad:
-            if self.__rareza == 'LEGENDARIO':
-                return False
-
-            if self.__rareza == 'RARO':
-                self.__rareza = 'LEGENDARIO'
-
-            if self.__rareza == 'COMUN' or self.__rareza == 'COMÚN':
+        if tirada_dado <= probabilidad_exito:
+            if self.__rareza == 'COMÚN' or self.__rareza == 'COMUN':
                 self.__rareza = 'RARO'
+            elif self.__rareza == 'RARO':
+                self.__rareza = 'LEGENDARIO'
+            return True
+
+        return False
+
+    def mejorar_estado(self) -> bool:
+        if self.__estado == 'PERFECTO':
+            return False
+
+        # Cuanto mejor el estado, mas dificil es mejorarlo
+        probabilidades = {
+            'MALO': 80,
+            'ACEPTABLE': 50,
+            'BUENO': 20
+        }
+
+        probabilidad_exito = probabilidades[self.__estado]
+        tirada_dado = random.randint(1, 100)
+
+        if tirada_dado <= probabilidad_exito:
+            if self.__estado == 'MALO':
+                self.__estado = 'ACEPTABLE'
+            elif self.__estado == 'ACEPTABLE':
+                self.__estado = 'BUENO'
+            elif self.__estado == 'BUENO':
+                self.__estado = 'PERFECTO'
 
             return True
 
+        #Si falla la mejora, degradamos el estado de la figura si es de RESINA
+        else:
+            if self.__material == 'RESINA':
+                if self.__estado == 'BUENO':
+                    self.__estado = 'ACEPTABLE'
+                elif self.__estado == 'ACEPTABLE':
+                    self.__estado = 'MALO'
 
-
-
+            return False
 
 
     def __str__(self):
