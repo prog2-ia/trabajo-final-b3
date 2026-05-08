@@ -1,4 +1,6 @@
+import random
 from .pieza import Pieza
+from ..excepciones import PiezaInvalidError
 
 
 class Figura(Pieza):
@@ -92,10 +94,41 @@ class Figura(Pieza):
         return True
 
     """
-     -------------------------------------------------------------------------------------------------------------------------------------
-                                 MÉTODOS ABSTRACTOS
-     -------------------------------------------------------------------------------------------------------------------------------------
-     """
+    -------------------------------------------------------------------------------------------------------------------------------------
+                                MÉTODOS ABSTRACTOS
+    -------------------------------------------------------------------------------------------------------------------------------------
+    """
+    def mejorar_rareza(self) -> bool: # Hay una probabilidad de que se mejore
+        #__material : str -> ['PVC', 'RESINA', 'METAL']
+        if self.__material == 'PVC' :
+            dificultad = 1
+        elif self.__material =='RESINA' :
+            dificultad = 2
+        else :
+            dificultad = 3
+        dificultad *= 10
+
+        if  (self.__altura * self.__anchura) > 150  : # Cuanto más grande más dificil de mejorar
+            dificultad  += 5
+        else :
+            dificultad += 3
+
+
+        if n > probabilidad:
+            if self.__rareza == 'LEGENDARIO':
+                return False
+
+            if self.__rareza == 'RARO':
+                self.__rareza = 'LEGENDARIO'
+
+            if self.__rareza == 'COMUN' or self.__rareza == 'COMÚN':
+                self.__rareza = 'RARO'
+
+            return True
+
+
+
+
 
 
     def __str__(self):

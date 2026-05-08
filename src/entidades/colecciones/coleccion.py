@@ -100,18 +100,11 @@ class Coleccion :
 
     def get_figuras(self) -> list[Figura]:
 
-        figuras = []
-        for pieza in self.__piezas:
-            if isinstance(pieza,Figura):
-                figuras.append(pieza)
-        return figuras.copy()
+        return [pieza for pieza in self.__piezas if isinstance(pieza,Figura)]
 
     def get_cartas(self) -> list[Carta]:
-        cartas = []
-        for pieza in self.__piezas:
-            if isinstance(pieza,Carta):
-                cartas.append(pieza)
-        return cartas.copy()
+
+        return [carta for carta in self.__piezas if isinstance(carta,Carta)]
 
     def __eq__(self, other) -> bool:
         if isinstance(other, Coleccion):

@@ -97,9 +97,12 @@ class Pieza(ABC) :
     -------------------------------------------------------------------------------------------------------------------------------------
     """
 
-
     @abstractmethod
     def mejorar_rareza(self):
+        pass
+
+    @abstractmethod
+    def mejorar_estado(self):
         pass
 
     def tasar(self) -> float:
