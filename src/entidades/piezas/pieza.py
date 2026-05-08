@@ -96,35 +96,10 @@ class Pieza(ABC) :
     -------------------------------------------------------------------------------------------------------------------------------------
     """
 
-    def mejorar_rareza(self) -> bool:
 
-        if self.__rareza == 'LEGENDARIO':
-            return False
-
-        if self.__rareza == 'RARO':
-            self.__rareza = 'LEGENDARIO'
-
-
-        if self.__rareza == 'COMUN' or self.__rareza =='COMÚN':
-            self.__rareza = 'RARO'
-
-        return True
-
-    def mejorar_estado(self) -> bool:
-
-        if self.__estado == 'PERFECTO':
-            return False
-
-        if self.__estado == 'BUENO':
-            self.__estado = 'PERFECTO'
-
-        if self.__estado == 'ACEPTABLE':
-            self.__estado = 'BUENO'
-
-        if self.__estado == 'MALO':
-            self.__estado = 'ACEPTABLE'
-
-        return True
+    @abstractmethod
+    def mejorar_rareza(self):
+        pass
 
     def tasar(self) -> float:
 
