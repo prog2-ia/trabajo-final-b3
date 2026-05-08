@@ -85,9 +85,10 @@ class Pieza(ABC) :
     @precio.setter
     def precio(self, value) -> None:
 
-        if type(value) == str or value is None or value <= 0.0:
-            return
-
+        if type(value) != float and type(value) != int  :
+            raise TypeError('Tipo de dato pasado incorrecto')
+        elif value is None or value <= 0.0:
+            raise ValueError('Valor pasado incorrecto')
         self.__precio = value
 
     """

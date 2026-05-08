@@ -1,6 +1,7 @@
 from ..piezas.pieza import Pieza
 from ..piezas.carta import Carta
 from ..piezas.figura import Figura
+from ..excepciones import  PiezaInvalidError
 
 class Coleccion :
     """
@@ -66,7 +67,9 @@ class Coleccion :
     @piezas.setter
     def piezas(self, value):
         if value is None :
-            raise  TypeError('Tipo erróneo')
+            raise  TypeError('Tipo erroneo')
+        elif value == [] :
+            raise  ValueError('Lista de piezas vacía')
         self.__piezas = value.copy()
 
     """
@@ -81,7 +84,7 @@ class Coleccion :
             raise TypeError('Tipo de dato pieza equivocado')
 
         if pieza in self.__piezas:
-            return False # Excepción piezas ya está
+            raise PiezaInvalidError('Pieza ya existe en la colección') # Excepción piezas ya está
 
         self.__piezas.append(pieza)
 
@@ -96,16 +99,14 @@ class Coleccion :
             self.__piezas.remove(pieza)
             return True
         else:
-            return False #Excepción pieza no está
+            raise PiezaInvalidError('Pieza no existe en la colección')
 
     def get_figuras(self) -> list[Figura]:
 
         figuras = []
-
         for pieza in self.__piezas:
             if isinstance(pieza,Figura):
                 figuras.append(pieza)
-
         return figuras.copy()
 
     def get_cartas(self) -> list[Carta]:
@@ -118,6 +119,8 @@ class Coleccion :
     def __eq__(self, other) -> bool:
         if isinstance(other, Coleccion):
             return self.__identificador == other.__identificador
+        else :
+            raise TypeError('Tipo de dato other erroneo')
 
     def __str__(self) -> str:
         return f" Colección ID: {self.__identificador}  , Número de piezas: {len(self.__piezas)}"

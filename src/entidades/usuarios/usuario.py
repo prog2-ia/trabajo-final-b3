@@ -1,5 +1,6 @@
 
 from ..colecciones.coleccion import Coleccion
+from ..excepciones import  ColeccionInvalidError
 
 class Usuario :
     """
@@ -73,7 +74,7 @@ class Usuario :
     def anyadir_coleccion(self , coleccion : list[Coleccion] ) -> bool:
 
         if coleccion is None or coleccion == [] :
-            return  False #Excepción colección está vacía
+            raise ValueError('Lista de colecciones vacía')
         self.__colecciones.append(coleccion)
         return True
 
@@ -82,11 +83,11 @@ class Usuario :
         if coleccion in self.__colecciones :
             self.__colecciones.remove(coleccion)
             return True
-        return False #Excepción no existe esa colección
+        raise ColeccionInvalidError('La coleccion no existe') #Excepción no existe esa colección
 
     def __eq__(self, other) -> bool:
         if not isinstance(other, Usuario):
-            raise  TypeException('Tipo de dato other incorrecto')
+            raise  TypeError('Tipo de dato other incorrecto')
         return self.email == other.email and self.nombre == other.nombre
 
     def __str__(self) -> str :
