@@ -1,6 +1,6 @@
 import random
 from .pieza import Pieza
-from ..excepciones import PiezaInvalidError
+from ..excepciones import FiguraInvalidError
 
 
 class Figura(Pieza):
@@ -83,10 +83,10 @@ class Figura(Pieza):
             raise  TypeError('Solo se permiten valores numéricos ')
 
         if altura < self.__altura or anchura < self.__anchura:
-            return False
+            return ValueError('Proporciones pasadas incorrectas')
 
         if altura == self.__altura and anchura == self.__anchura:
-            return False
+            return ValueError('Proporciones pasadas incorrectas')
 
         self.__altura = altura
         self.__anchura = anchura
@@ -101,7 +101,7 @@ class Figura(Pieza):
 
     def mejorar_rareza(self) -> bool:
         if self.__rareza == 'LEGENDARIO':
-            return False
+            raise ('Error no se puede mejorar más la rareza')
 
         if self.__material == 'PVC':
             dificultad = 10
@@ -125,7 +125,7 @@ class Figura(Pieza):
                 self.__rareza = 'LEGENDARIO'
             return True
 
-        return False
+        raise ('Error no se ha podido mejorar la rareza')
 
     def mejorar_estado(self) -> bool:
         if self.__estado == 'PERFECTO':
@@ -158,8 +158,9 @@ class Figura(Pieza):
                     self.__estado = 'ACEPTABLE'
                 elif self.__estado == 'ACEPTABLE':
                     self.__estado = 'MALO'
+                raise('Error no se ha podido mejorar el estado , al ser de resina la pieza su estado a empeordado')
 
-            return False
+            raise ('Error no se ha podido mejorar el estado')
 
 
     def __str__(self):

@@ -3,3 +3,9 @@ class ColeccionInvalidError (Exception) :
 
 class PiezaInvalidError (Exception) :
     pass
+
+class CartaInvalidError (Exception) : 
+    pass 
+
+class FiguraInvalidError (Exception) : 
+    pass 

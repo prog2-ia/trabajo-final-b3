@@ -58,6 +58,7 @@ class Gestorcolecciones:
         return self.__lista_colecciones.copy()
 
     def crear_nueva_coleccion(self) -> Coleccion :
+
         nueva = Coleccion()
         self.__lista_colecciones.append(nueva)
         return nueva

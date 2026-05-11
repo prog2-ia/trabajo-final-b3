@@ -1,7 +1,7 @@
 import random
 
 from .pieza import Pieza
-
+from ..excepciones import CartaInvalidError
 
 class Carta(Pieza):
     """
@@ -55,15 +55,13 @@ class Carta(Pieza):
 
     def firmar_carta(self) -> bool:
         if self.__firma == True:
-            return False # Excepción la carta ya está firmada
-
+            raise CartaInvalidError('Carta ya contiene firma') # Excepción la carta ya está firmada
         self.__firma = True
-
         return True
 
     def mejorar_rareza(self) -> bool:
         if self.__rareza == 'LEGENDARIO':
-            return False
+            raise CartaInvalidError('la rareza no se puede mejorar más ')
 
         probabilidad_exito = 70
 
@@ -79,12 +77,14 @@ class Carta(Pieza):
             elif self.__rareza == 'RARO':
                 self.__rareza = 'LEGENDARIO'
             return True
-
-        return False
+        
+        # Cuando sucede un error al mejorar la carta , la firma se borra si existe
+        raise CartaInvalidError('Error al mejorar la carta, se ha borrado la firma') if self.__firma else  CartaInvalidError('Error no se ha podido mejorar la carta')
+        
 
     def mejorar_estado(self) -> bool:
         if self.__estado == 'PERFECTO':
-            return False
+            raise CartaInvalidError('el estado no se puede mejorar más')
 
         probabilidades = {
             'MALO': 80,
@@ -114,7 +114,7 @@ class Carta(Pieza):
             if self.__firma == True:
                 self.__firma = False
 
-            return False
+            return ('Error al mejorar el estado , se ha borrado la firma ')
 
     def __str__(self):
         padre = super().__str__()
