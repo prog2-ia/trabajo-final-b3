@@ -9,3 +9,6 @@ class CartaInvalidError (Exception) :
 
 class FiguraInvalidError (Exception) : 
     pass 
+
+class UserInvalidError(Exception) : 
+    pass 

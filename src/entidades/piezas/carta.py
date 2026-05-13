@@ -113,8 +113,7 @@ class Carta(Pieza):
         else:
             if self.__firma == True:
                 self.__firma = False
-
-            return ('Error al mejorar el estado , se ha borrado la firma ')
+            raise CartaInvalidError ('Error al mejorar el estado , se ha borrado la firma ')
 
     def __str__(self):
         padre = super().__str__()

@@ -1,6 +1,6 @@
 
 from  entidades.usuarios.usuario import  Usuario
-
+from entidades.excepciones import UserInvalidError
 
 class GestorUsuarios :
     """
@@ -43,10 +43,10 @@ class GestorUsuarios :
         try :
             usuario = Usuario(email= email, nombre= nombre)
         except ValueError as val:
-            return str(val) 
+            raise UserInvalidError ( str(val)  ) 
 
         if usuario in self.__lista_usuarios :
-            return 'Usuario ya existe'
+            raise UserInvalidError ( 'Usuario ya existe' ) 
 
         self.__lista_usuarios.append(usuario)
         return 'Usuario registrado correctamente'
