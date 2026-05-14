@@ -1,6 +1,4 @@
-from ..piezas.pieza import Pieza
-from ..piezas.carta import Carta
-from ..piezas.figura import Figura
+from ..piezas import Pieza , Carta , Figura
 from ..excepciones import  PiezaInvalidError
 
 class Coleccion :
@@ -107,10 +105,13 @@ class Coleccion :
         return [carta for carta in self.__piezas if isinstance(carta,Carta)]
 
     def __eq__(self, other) -> bool:
-        if isinstance(other, Coleccion):
+        if isinstance(other, Coleccion) :
             return self.__identificador == other.__identificador
         else :
             raise TypeError('Tipo de dato other erroneo')
+        
+    def __len__(self) -> int : 
+        return len(self.__piezas)
 
     def __str__(self) -> str:
         return f" Colección ID: {self.__identificador}  , Número de piezas: {len(self.__piezas)}"

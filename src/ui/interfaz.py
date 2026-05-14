@@ -1,4 +1,4 @@
-from servicios.coordinador import Coordinador
+from servicios import Coordinador
 
 class Interfaz :
 

@@ -1,5 +1,4 @@
 import random
-
 from .pieza import Pieza
 from ..excepciones import CartaInvalidError
 
@@ -35,11 +34,23 @@ class Carta(Pieza):
         self.__firma = False
 
 
+    
+    @property
+    def imagen(self) : 
+        return self.__imagen
+    
+    @property
+    def firma(self) : 
+        return self.__firma
+
     """
     -------------------------------------------------------------------------------------------------------------------------------------
                                 MÉTODOS
     -------------------------------------------------------------------------------------------------------------------------------------
     """
+
+
+
     def tasar(self) -> float:
 
 

@@ -1,6 +1,7 @@
 from .gestorpiezas import  GestorPiezas
 from .gestorusuarios import  GestorUsuarios
 from .gestorcolecciones import  Gestorcolecciones
+from entidades.excepciones import UserInvalidError , ColeccionInvalidError
 
 class Coordinador  :
     """
@@ -88,11 +89,21 @@ class Coordinador  :
         return self.__gestorusuarios.listar_usuarios()
 
     def registrar_usuario(self, email : str , nombre : str) -> str :
-        return  self.__gestorusuarios.registrar_usuario(email= email, nombre= nombre)
+        try : 
+            self.__gestorusuarios.registrar_usuario(email= email, nombre= nombre)
+        except UserInvalidError as user : 
+            return str (user)
+        else : 
+            return 'Usuario registrado correctamente'
 
     def iniciar_sesion_usuario(self , email : str , nombre : str) -> str :
-        resultado = self.__gestorusuarios.inicio_sesion(email= email, nombre= nombre)
-        return  'Usuario iniciado correctamente' if resultado == True else 'Usuario no encontrado '
+        try :
+            self.__gestorusuarios.inicio_sesion(email= email, nombre= nombre)
+        except UserInvalidError as user: 
+            return str (user)
+        else : 
+            return 'Inicio de sesión correcto'
+
 
 
     """
@@ -113,9 +124,15 @@ class Coordinador  :
         return f'Nueva coleccion id :{self.__gestorcolecciones.crear_nueva_coleccion().identificador} creada correctamente'
 
     def eliminar_coleccion(self , identificador : int) -> str :
-        return f'coleccion id : {identificador} eliminada correctamente' if self.__gestorcolecciones.eliminar_coleccion(identificador) == True else f'coleccion id : {identificador} no encontrada'
+        try : 
+            self.__gestorcolecciones.eliminar_coleccion(identificador)
+        except ColeccionInvalidError as c  : 
+            return str (c)
+        else : 
+            return f'coleccion id : {identificador} eliminada correctamente' 
 
     def seleccionar_coleccion(self , identificador : int) -> str :
+        
         return f'colección id : {identificador} seleccionada' if self.__gestorcolecciones.seleccionar_coleccion(identificador) == True else f'coleccion id : {identificador} no encontrada'
 
 

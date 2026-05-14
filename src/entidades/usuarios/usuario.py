@@ -1,5 +1,4 @@
-
-from ..colecciones.coleccion import Coleccion
+from ..colecciones import Coleccion
 from ..excepciones import  ColeccionInvalidError
 
 class Usuario :
@@ -63,7 +62,7 @@ class Usuario :
 
     @property
     def colecciones(self) -> list[Coleccion] :
-        return self.__colecciones
+        return self.__colecciones.copy()
 
     """
     -------------------------------------------------------------------------------------------------------------------------------------
@@ -73,7 +72,7 @@ class Usuario :
 
     def anyadir_coleccion(self , lista_colecciones : list[Coleccion] ) -> bool:
 
-        if lista_colecciones is None or lista_colecciones == [] :
+        if lista_colecciones is None or len(lista_colecciones) == 0   :
             raise ValueError('Lista de colecciones vacía')
         self.__colecciones.append(lista_colecciones)
         return True

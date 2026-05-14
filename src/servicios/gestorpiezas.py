@@ -1,7 +1,6 @@
-from  entidades.piezas.pieza import Pieza 
-from entidades.piezas.carta import Carta
-from entidades.piezas.figura import Figura
+from entidades.piezas import Pieza , Figura , Carta
 from entidades.excepciones import PiezaInvalidError  
+
 class GestorPiezas:
 
     """
@@ -57,11 +56,18 @@ class GestorPiezas:
     
     @staticmethod
     def reparar_pieza(pieza : Pieza) -> bool : 
-        return pieza.mejorar_estado()
-    
+        try : 
+            pieza.mejorar_estado()
+            return True
+        except Exception as exp :       
+            raise PiezaInvalidError ( str(exp) )
+
     @staticmethod
     def mejorar_pieza(pieza : Pieza) -> bool : 
-        return pieza.mejorar_rareza()
+        try : 
+            return pieza.mejorar_rareza()
+        except Exception as exp : 
+            raise PiezaInvalidError ( str(exp) )
 
     @staticmethod
     def tasar_pieza(pieza : Pieza)-> int : 

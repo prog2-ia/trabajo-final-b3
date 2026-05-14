@@ -1,5 +1,5 @@
 
-from  entidades.usuarios.usuario import  Usuario
+from entidades.usuarios import Usuario
 from entidades.excepciones import UserInvalidError
 
 class GestorUsuarios :
@@ -38,7 +38,7 @@ class GestorUsuarios :
     def listar_usuarios(self) -> list[Usuario]:
         return self.__lista_usuarios.copy()
 
-    def registrar_usuario(self , email : str , nombre : str )-> str | Usuario:
+    def registrar_usuario(self , email : str , nombre : str )-> None :
         
         try :
             usuario = Usuario(email= email, nombre= nombre)
@@ -47,14 +47,13 @@ class GestorUsuarios :
 
         if usuario in self.__lista_usuarios :
             raise UserInvalidError ( 'Usuario ya existe' ) 
-
         self.__lista_usuarios.append(usuario)
-        return 'Usuario registrado correctamente'
-
+        
 
     def inicio_sesion(self , email : str ,nombre : str)->bool:
+
         for usuario in self.__lista_usuarios :
             if usuario.email == email and usuario.nombre == nombre :
                 self.__usuario_actual = usuario
                 return True
-        return False
+        raise UserInvalidError ('Usuario no encontrado')

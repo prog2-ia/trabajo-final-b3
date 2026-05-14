@@ -1,5 +1,5 @@
-from  entidades.colecciones.coleccion import Coleccion
-
+from entidades.colecciones import Coleccion
+from entidades.excepciones import PiezaInvalidError , ColeccionInvalidError
 class Gestorcolecciones:
     """
         Clase usada por coordinador para gestionar las colecciones almacenadas
@@ -68,23 +68,23 @@ class Gestorcolecciones:
         for coleccion in self.__lista_colecciones:
             if coleccion.identificador == int(identificador):
                 return coleccion
-        return None 
+        raise ColeccionInvalidError('Coleccion no encontrada')
 
     def eliminar_coleccion(self , identificador : int )-> bool :
-
-                coleccion = self.buscar_coleccion(identificador)
-                if coleccion is None : 
-                    return False
-                self.__lista_colecciones.remove(coleccion)
-                return True
+        try :
+            coleccion = self.buscar_coleccion(identificador)
+            self.__lista_colecciones.remove(coleccion)
+            return True
+        except ColeccionInvalidError:
+            raise ColeccionInvalidError('Coleccion no encontrada')
 
     def seleccionar_coleccion(self, identificador : int )-> bool:
-
-        coleccion = self.buscar_coleccion(identificador)
-        if coleccion is None : 
-                return False
-        self.__coleccione_actual = coleccion
-        return True
+        try : 
+            coleccion = self.buscar_coleccion(identificador)
+            self.__coleccione_actual = coleccion
+            return True 
+        except ColeccionInvalidError : 
+            raise ColeccionInvalidError('Coleccion no encontrada')
 
 
     def obtener_piezas(self) -> list['Pieza']: 
@@ -100,22 +100,25 @@ class Gestorcolecciones:
         return self.__coleccione_actual.get_cartas()
     
     def anyadir_pieza(self , pieza)-> bool  : 
-        return self.__coleccione_actual.agregar_pieza(pieza)
-    
+        try :
+            self.__coleccione_actual.agregar_pieza(pieza)
+            return True
+        except PiezaInvalidError : 
+            raise ValueError('Pieza no encontrada')
+        
     def eliminar_pieza(self ,pieza)-> True :
-        
         nueva_lista = self.__coleccione_actual.piezas
-        pieza_eliminar = self.obtener_pieza(pieza)
-        
-        if pieza_eliminar is not None : 
-            nueva_lista.remove(pieza_eliminar)
-            self.__coleccione_actual.piezas = nueva_lista
+        try : 
+            pieza_eliminar = self.obtener_pieza(pieza)
+        except : 
+            raise ValueError('Pieza no encontrada')
+        else  :
+            self.__coleccione_actual.piezas.remove(pieza_eliminar)
             return True 
-        return False
 
     def obtener_pieza(self , pieza) ->  'Pieza'  : 
         
         for pieza_encoleccion in self.__coleccione_actual.piezas :
             if pieza_encoleccion == pieza : 
                 return pieza_encoleccion 
-        return None 
+        raise ValueError('Pieza no encontrada') 

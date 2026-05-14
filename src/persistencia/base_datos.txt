@@ -1,0 +1,6 @@
+........................... BASE DE DATOS DEL GESTOR DE COLECCIONES .................................
+
+------------------------| Usuario : tu |--------------------------
+-------->  Coleccion : 0 
+->Nombre:a,Estado:MALO,Edicion:ad,Rareza:RARO,Precio:0,Altura:123,Anchura:123,Material:PVC
+->Nombre:j,Estado:MALO,Edicion:as,Rareza:RARO,Precio:0,Imagen:ASDAR,Frima:False

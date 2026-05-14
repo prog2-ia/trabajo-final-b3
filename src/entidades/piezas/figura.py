@@ -39,7 +39,7 @@ class Figura(Pieza):
             raise ValueError('Valor de dato en  altura incorrecto')
         altura = int(altura)
 
-        if type(anchura) != int or type(altura) != float :
+        if type(anchura) != int and type(altura) != float :
             raise TypeError('Tipo de anchura incorrecto')
         elif anchura <= 0  :
             raise ValueError('Valor de anchura incorrecto')
@@ -52,6 +52,18 @@ class Figura(Pieza):
         self.__altura = altura
         self.__anchura = anchura
         self.__material = material.upper()
+
+    @property
+    def altura(self) : 
+        return self.__altura
+    
+    @property
+    def anchura(self) : 
+        return self.__anchura
+    
+    @property
+    def material(self) : 
+        return self.__material
 
     """
     -------------------------------------------------------------------------------------------------------------------------------------
