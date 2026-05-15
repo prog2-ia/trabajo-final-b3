@@ -1,7 +1,7 @@
 from .gestorpiezas import  GestorPiezas
 from .gestorusuarios import  GestorUsuarios
 from .gestorcolecciones import  Gestorcolecciones
-from entidades.excepciones import UserInvalidError , ColeccionInvalidError
+from entidades.excepciones import UserInvalidError , ColeccionInvalidError , PiezaInvalidError
 from entidades.ficherostexto import FicherosTexto 
 
 class Coordinador  :
@@ -133,8 +133,14 @@ class Coordinador  :
             return f'coleccion id : {identificador} eliminada correctamente' 
 
     def seleccionar_coleccion(self , identificador : int) -> str :
-        
-        return f'colección id : {identificador} seleccionada' if self.__gestorcolecciones.seleccionar_coleccion(identificador) == True else f'coleccion id : {identificador} no encontrada'
+        try:
+            self.__gestorcolecciones.seleccionar_coleccion(identificador)
+        except ColeccionInvalidError as error:
+            return str(error)
+        else:
+            return  f'colección id: {identificador} seleccionada'
+
+        # return f'colección id : {identificador} seleccionada' if self.__gestorcolecciones.seleccionar_coleccion(identificador) == True else f'coleccion id : {identificador} no encontrada'
 
 
     """
@@ -154,27 +160,50 @@ class Coordinador  :
     
 
     def anyadir_figura(self,nombre , estado , edicion , rareza , altura ,anchura , materiales)-> str : 
-        
-        figura = self.__gestorpiezas.crear_figura(nombre , estado , edicion , rareza , altura ,anchura , materiales)
+        try:
+            figura = self.__gestorpiezas.crear_figura(nombre , estado , edicion , rareza , altura ,anchura , materiales)
+        except PiezaInvalidError as error:
+            return str(error)
+        try:
+            self.__gestorcolecciones.anyadir_pieza(figura)
+        except PiezaInvalidError as error:
+            return str(error)
+        else:
+            return f'\n----Figura añadida---- \n {figura} '
 
-        if type(figura) is str :
-            return figura
-
-        return '\n----Error al añadir figura compruebe que no haya otra pieza con el mismo nombre----' if self.__gestorcolecciones.anyadir_pieza(figura) == False else f'\n----Figura añadida---- \n {figura} '
+# return '\n----Error al añadir figura compruebe que no haya otra pieza con el mismo nombre----' if self.__gestorcolecciones.anyadir_pieza(figura) == False else f'\n----Figura añadida---- \n {figura} '
 
 
     def anyadir_carta(self , nombre , estado ,edicion , rareza , imagen) -> str  : 
-
-        carta = self.__gestorpiezas.crear_carta(nombre , estado ,edicion , rareza , imagen)
-        if type(carta) is str :
-            return carta  
+        try:
+            carta = self.__gestorpiezas.crear_carta(nombre , estado ,edicion , rareza , imagen)
+        except PiezaInvalidError as error:
+            return str(error)
+        try:
+            self.__gestorcolecciones.anyadir_pieza(carta)
+        except PiezaInvalidError as error:
+            return str(error)
+        else:
+            return f'\n----Carta añadida----\n {carta}'
         
-        return '\n----Error al añadir Carta compruebe que no haya otra pieza con el mismo nombre----'  if self.__gestorcolecciones.anyadir_pieza(carta) == False else f'\n----Carta añadida----\n {carta}'
+      #  return '\n----Error al añadir Carta compruebe que no haya otra pieza con el mismo nombre----'  if self.__gestorcolecciones.anyadir_pieza(carta) == False else f'\n----Carta añadida----\n {carta}'
         
 
     def eliminar_pieza(self , nombre) -> str : 
-        pieza = self.__gestorpiezas.crear_carta(nombre , 'MALO','FALSA','COMUN','IMAGEN')
-        return f'----Pieza {nombre} eliminada----' if self.__gestorcolecciones.eliminar_pieza(pieza) == True else f'----Pieza {nombre} no encontrada----'
+        try:
+            pieza = self.__gestorpiezas.crear_carta(nombre , 'MALO','FALSA','COMUN','IMAGEN')
+        except PiezaInvalidError as error:
+            return str(error)
+        try:
+            self.__gestorcolecciones.eliminar_pieza(pieza)
+        except PiezaInvalidError as error:
+            return str(error)
+        else:
+            return f'----Pieza {nombre} eliminada----'
+
+
+
+       # return f'----Pieza {nombre} eliminada----' if self.__gestorcolecciones.eliminar_pieza(pieza) == True else f'----Pieza {nombre} no encontrada----'
         
     
 
@@ -185,24 +214,54 @@ class Coordinador  :
     """
 
     def reparar_pieza(self , nombre) -> str : 
+        try:
+            pieza_falsa = self.__gestorpiezas.crear_carta(nombre , 'MALO','FALSA','COMUN','IMAGEN')
+        except PiezaInvalidError as error:
+            return str(error)
+        try:
+            pieza_real = self.__gestorcolecciones.obtener_pieza(pieza_falsa)
+        except PiezaInvalidError as error:
+            return str(error)
+        try:
+            self.__gestorpiezas.reparar_pieza(pieza_real)
+        except PiezaInvalidError as error:
+            return str(error)
+        else:
+            return f'----Pieza : {nombre} reparada---- '
         
-        pieza_falsa = self.__gestorpiezas.crear_carta(nombre , 'MALO','FALSA','COMUN','IMAGEN')
-        pieza_real = self.__gestorcolecciones.obtener_pieza(pieza_falsa)
-        
-        return f'----Pieza : {nombre} reparada---- ' if self.__gestorpiezas.reparar_pieza(pieza_real) == True else '----Error al reparar la pieza----'
+        # return f'----Pieza : {nombre} reparada---- ' if self.__gestorpiezas.reparar_pieza(pieza_real) == True else '----Error al reparar la pieza----'
         
     def mejorar_pieza(self , nombre) -> str  : 
-        
-        pieza_falsa = self.__gestorpiezas.crear_carta(nombre , 'MALO','FALSA','COMUN','IMAGEN')
-        pieza_real = self.__gestorcolecciones.obtener_pieza(pieza_falsa)
-        
-        return f'----Pieza : {nombre} Mejorada---- ' if self.__gestorpiezas.mejorar_pieza(pieza_real) == True else  '----Error al Mejorar la pieza----'
+        try:
+            pieza_falsa = self.__gestorpiezas.crear_carta(nombre , 'MALO','FALSA','COMUN','IMAGEN')
+        except PiezaInvalidError as error:
+            return str(error)
+        try:
+            pieza_real = self.__gestorcolecciones.obtener_pieza(pieza_falsa)
+        except PiezaInvalidError as error:
+            return str(error)
+        try:
+            self.__gestorpiezas.mejorar_pieza(pieza_real)
+        except PiezaInvalidError as error:
+            return str(error)
+        else:
+            return f'----Pieza : {nombre} Mejorada---- '
 
-    def tasar_pieza(self , nombre) -> str : 
-        pieza_falsa = self.__gestorpiezas.crear_carta(nombre , 'MALO','FALSA','COMUN','IMAGEN')
-        pieza_real = self.__gestorcolecciones.obtener_pieza(pieza_falsa)
-        precio = self.__gestorpiezas.tasar_pieza(pieza_real)
-        return f'----Precio : {precio}€ -----'
+
+            # return f'----Pieza : {nombre} Mejorada---- ' if self.__gestorpiezas.mejorar_pieza(pieza_real) == True else  '----Error al Mejorar la pieza----'
+
+    def tasar_pieza(self , nombre) -> str :
+        try:
+            pieza_falsa = self.__gestorpiezas.crear_carta(nombre , 'MALO','FALSA','COMUN','IMAGEN')
+        except PiezaInvalidError as error:
+            return str(error)
+        try:
+            pieza_real = self.__gestorcolecciones.obtener_pieza(pieza_falsa)
+        except PiezaInvalidError as error:
+            return str(error)
+        else:
+            precio = self.__gestorpiezas.tasar_pieza(pieza_real)
+            return f'----Precio : {precio}€ -----'
     
     """
     -------------------------------------------------------------------------------------------------------------------------------------

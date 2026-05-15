@@ -103,15 +103,15 @@ class Gestorcolecciones:
         try :
             self.__coleccione_actual.agregar_pieza(pieza)
             return True
-        except PiezaInvalidError : 
-            raise ValueError('Pieza no encontrada')
+        except Exception as error :
+            raise PiezaInvalidError(str(error))
         
     def eliminar_pieza(self ,pieza)-> True :
         nueva_lista = self.__coleccione_actual.piezas
         try : 
             pieza_eliminar = self.obtener_pieza(pieza)
         except : 
-            raise ValueError('Pieza no encontrada')
+            raise PiezaInvalidError('Pieza no encontrada')
         else  :
             self.__coleccione_actual.piezas.remove(pieza_eliminar)
             return True 
@@ -121,4 +121,4 @@ class Gestorcolecciones:
         for pieza_encoleccion in self.__coleccione_actual.piezas :
             if pieza_encoleccion == pieza : 
                 return pieza_encoleccion 
-        raise ValueError('Pieza no encontrada') 
+        raise PiezaInvalidError('Pieza no encontrada')

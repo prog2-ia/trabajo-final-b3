@@ -141,7 +141,7 @@ class Figura(Pieza):
 
     def mejorar_estado(self) -> bool:
         if self.__estado == 'PERFECTO':
-            return False
+            raise FiguraInvalidError('Error, el estado ya es PERFECTO')
 
         # Cuanto mejor el estado, mas dificil es mejorarlo
         probabilidades = {
