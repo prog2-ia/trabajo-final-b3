@@ -1,5 +1,14 @@
 ........................... BASE DE DATOS DEL GESTOR DE COLECCIONES .................................
 
-------------------------| Usuario : Boias |--------------------------
-
-------------------------| Usuario : sdads |--------------------------
+------------------------| Usuario : EJEMPLO1 |--------------------------
+------------------->  Coleccion : 0 
+------- Figuras ------- 
+------- Cartas ------- 
+->Nombre:carta, Estado:MALO, Edicion:12, Rareza:RARO, Precio:0, Imagen:imagen, Frima:False
+------------------->  Coleccion : 1 
+------- Figuras ------- 
+->Nombre:figura, Estado:BUENO, Edicion:12, Rareza:LEGENDARIO, Precio:0, Altura:12, Anchura:12, Material:METAL
+------- Cartas ------- 
+------------------->  Coleccion : 2 
+------- Figuras ------- 
+------- Cartas ------- 

@@ -81,15 +81,40 @@ class Pieza(ABC) :
     @property
     def precio(self) -> float:
         return self.__precio
+    
+    @precio.setter 
+    def precio(self , value : float) -> None : 
+        if  value is None : 
+            raise ValueError('Valor erroneo en precio')
+        try :
+            self.__precio = float (value)
+        except : 
+            raise ValueError('Valor erroneo en precio')
+    @nombre.setter
+    def nombre(self, value: str) -> None:
+        if value is None or not value.strip():
+            raise ValueError('Valor erroneo en nombre')
+        self.__nombre = value
 
-    @precio.setter
-    def precio(self, value) -> None:
+    @estado.setter
+    def estado(self, value: str) -> None:
+        opciones = ['PERFECTO', 'BUENO', 'ACEPTABLE', 'MALO']
+        if value is None or not value.strip() or value.upper() not in opciones:
+            raise ValueError('Valor erroneo en estado')
+        self.__estado = value.upper()
 
-        if type(value) != float and type(value) != int  :
-            raise TypeError('Tipo de dato pasado incorrecto')
-        elif value is None or value <= 0.0:
-            raise ValueError('Valor pasado incorrecto')
-        self.__precio = value
+    @edicion.setter
+    def edicion(self, value: str) -> None:
+        if value is None or not value.strip():
+            raise ValueError('Valor erroneo en edicion')
+        self.__edicion = value
+
+    @rareza.setter
+    def rareza(self, value: str) -> None:
+        opciones = ['LEGENDARIO', 'RARO', 'COMUN', 'COMÚN']
+        if value is None or not value.strip() or value.upper() not in opciones:
+            raise ValueError('Valor erroneo en rareza')
+        self.__rareza = value.upper()
 
     """
     -------------------------------------------------------------------------------------------------------------------------------------

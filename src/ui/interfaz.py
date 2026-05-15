@@ -30,6 +30,7 @@ class Interfaz :
                     print('................................................................\n')
                     for usuario in self.__coordinador.listar_usuarios() :
                         print(usuario)
+
                 case '1' :
                     print('\n................................................................')
                     print('                REGISTRO DE USUARIO              ')           
@@ -39,6 +40,7 @@ class Interfaz :
                     nombre = input('Nombre : ')
                     print(f'----{self.__coordinador.registrar_usuario(email= email , nombre= nombre)}----')
 
+
                 case '2' :
 
                     print('\n................................................................')
@@ -47,10 +49,14 @@ class Interfaz :
 
                     email = input('Email : ')
                     nombre = input('Nombre : ')
+
                     resultado = self.__coordinador.iniciar_sesion_usuario(email= email , nombre= nombre)
                     print(f'----{resultado}----')
-                    if resultado == 'Usuario iniciado correctamente' : 
+
+                    if resultado is not None:
+                        self.__coordinador.inicializar_colecciones()
                         self.parte_colecciones(nombre)
+                        
                 case '3' : 
                     print('\n................................................................')
                     print('                BASE DE DATOS IMPRESA en : src/persistencia/base_datos.txt            ')           
@@ -64,7 +70,7 @@ class Interfaz :
 
     def parte_colecciones(self , nombre):
         
-        self.__coordinador.inicializar_colecciones()
+        
         while True:
             print ('\n================================================================================')
             print(f'                GESTOR DE COLECCIONES DEL USUARIO : {nombre}              ')           
@@ -109,7 +115,7 @@ class Interfaz :
                     id = input('Identificador >  ')
                     resultado = self.__coordinador.seleccionar_coleccion(id)
                     print(f'----{resultado}----')
-                    if resultado != f'coleccion id : {id} no encontrada' : 
+                    if resultado == f'colección id: {id} seleccionada' : 
                         self.parte_gestion_coleccion_unica(id, nombre)
 
                 case '4':

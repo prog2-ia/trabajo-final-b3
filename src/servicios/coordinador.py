@@ -115,8 +115,13 @@ class Coordinador  :
 
 
     def inicializar_colecciones(self) -> None :
-        self.__gestorcolecciones = Gestorcolecciones(self.__gestorusuarios.usuario_actual)
+        # Usamos 'is' para comparar identidad, no solo valores
+        if self.__gestorcolecciones is not None and self.__gestorcolecciones.usuario is self.__gestorusuarios.usuario_actual:
+            return
         
+        # Si entramos aquí, creamos el gestor con el objeto REAL que vive en GestorUsuarios
+        self.__gestorcolecciones = Gestorcolecciones(self.__gestorusuarios.usuario_actual)
+                
 
     def listar_colecciones(self) -> list['Coleccion'] :
         return self.__gestorcolecciones.listar_colecciones()
@@ -270,6 +275,11 @@ class Coordinador  :
     """
     
     def guardar_base_datos(self) -> None : 
+
+        if self.__gestorcolecciones is None : 
+            pass
+        self.__gestorusuarios.usuario_actual = self.__gestorcolecciones.usuario
+
         contado = 0 
         for usuario in self.__gestorusuarios.listar_usuarios() : 
             if contado == 0 :

@@ -1,4 +1,4 @@
-from ui.interfaz import  Interfaz
+from ui.interfaz import  Interfaz 
 from entidades.usuarios.usuario import Usuario
 from entidades.colecciones.coleccion import Coleccion
 from entidades.piezas.carta import Carta 

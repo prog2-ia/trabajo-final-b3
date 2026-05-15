@@ -33,20 +33,26 @@ class GestorUsuarios :
     @property
     def usuario_actual(self):
         return self.__usuario_actual
+    
+    @usuario_actual.setter
+    def usuario_actual(self ,value) : 
+        if value is not None : 
+            self.__usuario_actual = value
 
 
     def listar_usuarios(self) -> list[Usuario]:
-        return self.__lista_usuarios.copy()
+        return self.__lista_usuarios
 
     def registrar_usuario(self , email : str , nombre : str )-> None :
         
         try :
-            usuario = Usuario(email= email, nombre= nombre)
+            usuario = Usuario(email = email, nombre= nombre)
         except ValueError as val:
             raise UserInvalidError ( str(val)  ) 
 
         if usuario in self.__lista_usuarios :
-            raise UserInvalidError ( 'Usuario ya existe' ) 
+            raise UserInvalidError ( 'Usuario ya existe' )
+        
         self.__lista_usuarios.append(usuario)
         
 

@@ -35,10 +35,20 @@ class Usuario :
 
         if email is None or not email.strip() :
             raise ValueError('email erroneo')
+        
+        try : 
+            self.__email = str(email) 
+        except : 
+            raise ValueError('email erroneo')
         self.__email = email
 
         if nombre is None or not nombre.strip() :
             raise  ValueError('nombre erroneo')
+        
+        try : 
+            self.__nombre = str(nombre)
+        except : 
+            raise ValueError('nombre erroneo')
         self.__nombre = nombre
 
         if colecciones is None :
@@ -70,11 +80,11 @@ class Usuario :
     -------------------------------------------------------------------------------------------------------------------------------------
     """
 
-    def anyadir_coleccion(self , lista_colecciones : list[Coleccion] ) -> bool:
+    def anyadir_coleccion(self , coleccion : Coleccion ) -> bool:
 
-        if lista_colecciones is None or len(lista_colecciones) == 0   :
+        if coleccion is None  :
             raise ValueError('Lista de colecciones vacía')
-        self.__colecciones.append(lista_colecciones)
+        self.__colecciones.append(coleccion)
         return True
 
     def eliminar_coleccion(self , coleccion : list[Coleccion]) -> bool:

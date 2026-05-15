@@ -34,13 +34,20 @@ class Figura(Pieza):
 
 
         if type(altura) != int and type(altura) != float :
-            raise TypeError('Tipo de dato en altura incorrecto')
+            try :
+                altura = float(altura)
+            except  :
+                raise TypeError('Tipo de dato en altura incorrecto')
+
         elif altura <= 0 :
             raise ValueError('Valor de dato en  altura incorrecto')
         altura = int(altura)
 
         if type(anchura) != int and type(altura) != float :
-            raise TypeError('Tipo de anchura incorrecto')
+            try :
+                anchura = float(anchura)
+            except :
+                raise TypeError('Tipo de anchura incorrecto')
         elif anchura <= 0  :
             raise ValueError('Valor de anchura incorrecto')
 
@@ -112,7 +119,7 @@ class Figura(Pieza):
     """
 
     def mejorar_rareza(self) -> bool:
-        if self.__rareza == 'LEGENDARIO':
+        if self.rareza == 'LEGENDARIO':
             raise  FiguraInvalidError('Error no se puede mejorar más la rareza')
 
         if self.__material == 'PVC':
@@ -131,16 +138,16 @@ class Figura(Pieza):
         tirada_dado = random.randint(1, 100)
 
         if tirada_dado <= probabilidad_exito:
-            if self.__rareza == 'COMÚN' or self.__rareza == 'COMUN':
-                self.__rareza = 'RARO'
-            elif self.__rareza == 'RARO':
-                self.__rareza = 'LEGENDARIO'
+            if self.rareza == 'COMÚN' or self.rareza == 'COMUN':
+                self.rareza = 'RARO'
+            elif self.rareza == 'RARO':
+                self.rareza = 'LEGENDARIO'
             return True
 
         raise FiguraInvalidError('Error no se ha podido mejorar la rareza')
 
     def mejorar_estado(self) -> bool:
-        if self.__estado == 'PERFECTO':
+        if self.estado == 'PERFECTO':
             raise FiguraInvalidError('Error, el estado ya es PERFECTO')
 
         # Cuanto mejor el estado, mas dificil es mejorarlo
@@ -150,26 +157,26 @@ class Figura(Pieza):
             'BUENO': 20
         }
 
-        probabilidad_exito = probabilidades[self.__estado]
+        probabilidad_exito = probabilidades[self.estado]
         tirada_dado = random.randint(1, 100)
 
         if tirada_dado <= probabilidad_exito:
-            if self.__estado == 'MALO':
-                self.__estado = 'ACEPTABLE'
-            elif self.__estado == 'ACEPTABLE':
-                self.__estado = 'BUENO'
-            elif self.__estado == 'BUENO':
-                self.__estado = 'PERFECTO'
+            if self.estado == 'MALO':
+                self.estado = 'ACEPTABLE'
+            elif self.estado == 'ACEPTABLE':
+                self.estado = 'BUENO'
+            elif self.estado == 'BUENO':
+                self.estado = 'PERFECTO'
 
             return True
 
         #Si falla la mejora, degradamos el estado de la figura si es de RESINA
         else:
-            if self.__material == 'RESINA':
-                if self.__estado == 'BUENO':
-                    self.__estado = 'ACEPTABLE'
-                elif self.__estado == 'ACEPTABLE':
-                    self.__estado = 'MALO'
+            if self.material == 'RESINA':
+                if self.estado == 'BUENO':
+                    self.estado = 'ACEPTABLE'
+                elif self.estado == 'ACEPTABLE':
+                    self.estado = 'MALO'
                 raise FiguraInvalidError('Error no se ha podido mejorar el estado , al ser de resina la pieza su estado a empeordado')
 
             raise FiguraInvalidError('Error no se ha podido mejorar el estado')

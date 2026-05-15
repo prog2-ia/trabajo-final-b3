@@ -71,30 +71,29 @@ class Carta(Pieza):
         return True
 
     def mejorar_rareza(self) -> bool:
-        if self.__rareza == 'LEGENDARIO':
+        if self.rareza == 'LEGENDARIO':
             raise CartaInvalidError('la rareza no se puede mejorar más ')
 
         probabilidad_exito = 70
 
         # Si esta firmada, el proceso es mas estricto y difícil
-        if self.__firma:
+        if self.firma:
             probabilidad_exito -= 30
 
         tirada_dado = random.randint(1, 100)
 
         if tirada_dado <= probabilidad_exito:
-            if self.__rareza == 'COMUN' or self.__rareza == 'COMÚN':
-                self.__rareza = 'RARO'
-            elif self.__rareza == 'RARO':
-                self.__rareza = 'LEGENDARIO'
+            if self.rareza == 'COMUN' or self.rareza == 'COMÚN':
+                self.rareza = 'RARO'
+            elif self.rareza == 'RARO':
+                self.rareza = 'LEGENDARIO'
             return True
         
         # Cuando sucede un error al mejorar la carta , la firma se borra si existe
-        raise CartaInvalidError('Error al mejorar la carta, se ha borrado la firma') if self.__firma else  CartaInvalidError('Error no se ha podido mejorar la carta')
-        
+        raise CartaInvalidError('No se ha podido mejorar la carta y se ha borrado la firma ') if self.__firma else  CartaInvalidError('No se ha podido mejorar la carta')
 
     def mejorar_estado(self) -> bool:
-        if self.__estado == 'PERFECTO':
+        if self.estado == 'PERFECTO':
             raise CartaInvalidError('el estado no se puede mejorar más')
 
         probabilidades = {
@@ -103,7 +102,7 @@ class Carta(Pieza):
             'BUENO': 20
         }
 
-        probabilidad_exito = probabilidades[self.__estado]
+        probabilidad_exito = probabilidades[self.estado]
 
         # Limpiar una carta firmada es más difícil
         if self.__firma:
@@ -112,19 +111,20 @@ class Carta(Pieza):
         tirada_dado = random.randint(1, 100)
 
         if tirada_dado <= probabilidad_exito:
-            if self.__estado == 'MALO':
-                self.__estado = 'ACEPTABLE'
-            elif self.__estado == 'ACEPTABLE':
-                self.__estado = 'BUENO'
-            elif self.__estado == 'BUENO':
-                self.__estado = 'PERFECTO'
+            if self.estado == 'MALO':
+                self.estado = 'ACEPTABLE'
+            elif self.estado == 'ACEPTABLE':
+                self.estado = 'BUENO'
+            elif self.estado == 'BUENO':
+                self.estado = 'PERFECTO'
             return True
 
         # Si falla la mejora y estaba firmada se borra la firma
         else:
             if self.__firma == True:
                 self.__firma = False
-            raise CartaInvalidError ('Error al mejorar el estado , se ha borrado la firma ')
+                raise CartaInvalidError ('No se ha podido mejorar el estado y se ha borrado la firma ')
+            raise CartaInvalidError ('No se ha podido mejorar el estado  ')
 
     def __str__(self):
         padre = super().__str__()

@@ -1,5 +1,5 @@
 from ..usuarios import Usuario
-
+import os
 class FicherosTexto : 
     
     """
@@ -9,24 +9,27 @@ class FicherosTexto :
 
     @staticmethod
     def anyadir_usuario_fichero(   usuario : Usuario ) -> None : 
-        with open('./src/persistencia/base_datos.txt' , 'a') as writer : 
+        
+        with open( 'persistencia/base_datos.txt', 'a') as writer : 
 
             writer.write(f'\n------------------------| Usuario : {usuario.nombre} |--------------------------\n')
             contador = 0 
             for coleccion in usuario.colecciones :
-                writer.write(f'-------->  Coleccion : {contador} \n')
+                writer.write(f'------------------->  Coleccion : {contador} \n')
 
+                writer.write(f'------- Figuras ------- \n')
                 for figura in coleccion.get_figuras() : 
-                    writer.write(f'->Nombre:{figura.nombre},Estado:{figura.estado},Edicion:{figura.edicion},Rareza:{figura.rareza},Precio:{figura.precio},Altura:{figura.altura},Anchura:{figura.anchura},Material:{figura.material}\n')
+                    writer.write(f'->Nombre:{figura.nombre}, Estado:{figura.estado}, Edicion:{figura.edicion}, Rareza:{figura.rareza}, Precio:{figura.precio}, Altura:{figura.altura}, Anchura:{figura.anchura}, Material:{figura.material}\n')
                 
+                writer.write(f'------- Cartas ------- \n')
                 for carta in coleccion.get_cartas() :
-                    writer.write(f'->Nombre:{carta.nombre},Estado:{carta.estado},Edicion:{carta.edicion},Rareza:{carta.rareza},Precio:{carta.precio},Imagen:{carta.imagen},Frima:{carta.firma}\n')
+                    writer.write(f'->Nombre:{carta.nombre}, Estado:{carta.estado}, Edicion:{carta.edicion}, Rareza:{carta.rareza}, Precio:{carta.precio}, Imagen:{carta.imagen}, Frima:{carta.firma}\n')
                 contador+=1 
 
     @staticmethod
     def inicializar_fichero( usuario : Usuario ) -> None : 
-
-        with open('./src/persistencia/base_datos.txt' , 'w') as writer : 
+        global ruta_final
+        with open(  'persistencia/base_datos.txt'    , 'w') as writer : 
             writer.write(f'........................... BASE DE DATOS DEL GESTOR DE COLECCIONES .................................\n')
         
         FicherosTexto.anyadir_usuario_fichero(usuario)
