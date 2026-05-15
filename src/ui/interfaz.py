@@ -16,7 +16,8 @@ class Interfaz :
                 ' 0. Lista de usuarios'
                 '\n 1. Registrar nuevo usuario'
                 '\n 2. Iniciar sesion con un usuario'
-                '\n 3. Salir'
+                '\n 3. Imprimir base de datos'
+                '\n 4. Salir del programa '
                 )
 
             entrada = input('\n Seleccione una opción > ')
@@ -50,7 +51,13 @@ class Interfaz :
                     print(f'----{resultado}----')
                     if resultado == 'Usuario iniciado correctamente' : 
                         self.parte_colecciones(nombre)
-                case '3' :
+                case '3' : 
+                    print('\n................................................................')
+                    print('                BASE DE DATOS IMPRESA en : src/persistencia/base_datos.txt            ')           
+                    print('................................................................\n')
+                    self.__coordinador.guardar_base_datos()
+
+                case '4' :
                     return
                 case _ :
                     print('\n ---- Valor incorrecto ----')

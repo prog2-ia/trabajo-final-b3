@@ -2,6 +2,7 @@ from .gestorpiezas import  GestorPiezas
 from .gestorusuarios import  GestorUsuarios
 from .gestorcolecciones import  Gestorcolecciones
 from entidades.excepciones import UserInvalidError , ColeccionInvalidError
+from entidades.ficherostexto import FicherosTexto 
 
 class Coordinador  :
     """
@@ -202,3 +203,19 @@ class Coordinador  :
         pieza_real = self.__gestorcolecciones.obtener_pieza(pieza_falsa)
         precio = self.__gestorpiezas.tasar_pieza(pieza_real)
         return f'----Precio : {precio}€ -----'
+    
+    """
+    -------------------------------------------------------------------------------------------------------------------------------------
+                                PARTE DE    Ficheros de texto 
+    -------------------------------------------------------------------------------------------------------------------------------------
+    """
+    
+    def guardar_base_datos(self) -> None : 
+        contado = 0 
+        for usuario in self.__gestorusuarios.listar_usuarios() : 
+            if contado == 0 :
+                FicherosTexto.inicializar_fichero(usuario = usuario) 
+            else : 
+                FicherosTexto.anyadir_usuario_fichero(usuario = usuario) 
+            contado+= 1 
+    
