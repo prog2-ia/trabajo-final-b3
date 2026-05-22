@@ -2,8 +2,7 @@ from .gestorpiezas import  GestorPiezas
 from .gestorusuarios import  GestorUsuarios
 from .gestorcolecciones import  Gestorcolecciones
 from entidades.excepciones import UserInvalidError , ColeccionInvalidError , PiezaInvalidError
-from entidades.ficheros import FicherosTexto , FicherosBinarios
-
+from  persistencia import  FicherosTexto , FicherosBinarios
 class Coordinador  :
     """
         Clase principal que se comunica con la interfaz , cordina la gestión de los servicios : gestor colecciones 
