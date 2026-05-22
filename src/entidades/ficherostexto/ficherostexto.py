@@ -10,7 +10,7 @@ class FicherosTexto :
     @staticmethod
     def anyadir_usuario_fichero(   usuario : Usuario ) -> None : 
         
-        with open( 'persistencia/base_datos.txt', 'a') as writer : 
+        with open( 'persistencia/base_datos.txt', 'a' ,  encoding= 'utf-8' ) as writer : 
 
             writer.write(f'\n------------------------| Usuario : {usuario.nombre} |--------------------------\n')
             contador = 0 
@@ -28,7 +28,7 @@ class FicherosTexto :
 
     @staticmethod
     def inicializar_fichero( usuario : Usuario ) -> None :
-        with open(  'persistencia/base_datos.txt'    , 'w') as writer : 
+        with open(  'persistencia/base_datos.txt'    , 'w' ,  encoding= 'utf-8') as writer : 
             writer.write(f'........................... BASE DE DATOS DEL GESTOR DE COLECCIONES .................................\n')
         
         FicherosTexto.anyadir_usuario_fichero(usuario)
