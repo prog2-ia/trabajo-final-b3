@@ -79,7 +79,6 @@ class Coordinador  :
 
         lista_recuperada = FicherosBinarios.cargar_base_datos()
         if lista_recuperada is not None :
-            print("RECUPERADO")
             self.__gestorusuarios = GestorUsuarios(lista_recuperada)
         else :
             self.__gestorusuarios = GestorUsuarios()

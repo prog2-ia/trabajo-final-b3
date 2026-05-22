@@ -1,0 +1,13 @@
+........................... BASE DE DATOS DEL GESTOR DE COLECCIONES .................................
+
+------------------------| Usuario : Prueba1 |--------------------------
+------------------->  Coleccion : 0 
+------- Figuras ------- 
+------- Cartas ------- 
+------------------->  Coleccion : 1 
+------- Figuras ------- 
+->Nombre:Pieza1, Estado:MALO, Edicion:12, Rareza:RARO, Precio:0, Altura:12, Anchura:12, Material:RESINA
+------- Cartas ------- 
+------------------->  Coleccion : 2 
+------- Figuras ------- 
+------- Cartas ------- 
