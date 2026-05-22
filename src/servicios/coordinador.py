@@ -191,7 +191,7 @@ class Coordinador  :
         else:
             return f'\n----Carta añadida----\n {carta}'
         
-      #  return '\n----Error al añadir Carta compruebe que no haya otra pieza con el mismo nombre----'  if self.__gestorcolecciones.anyadir_pieza(carta) == False else f'\n----Carta añadida----\n {carta}'
+        #  return '\n----Error al añadir Carta compruebe que no haya otra pieza con el mismo nombre----'  if self.__gestorcolecciones.anyadir_pieza(carta) == False else f'\n----Carta añadida----\n {carta}'
         
 
     def eliminar_pieza(self , nombre) -> str : 
@@ -207,8 +207,7 @@ class Coordinador  :
             return f'----Pieza {nombre} eliminada----'
 
 
-
-       # return f'----Pieza {nombre} eliminada----' if self.__gestorcolecciones.eliminar_pieza(pieza) == True else f'----Pieza {nombre} no encontrada----'
+        # return f'----Pieza {nombre} eliminada----' if self.__gestorcolecciones.eliminar_pieza(pieza) == True else f'----Pieza {nombre} no encontrada----'
         
     
 
@@ -277,7 +276,7 @@ class Coordinador  :
     def guardar_base_datos(self) -> None : 
 
         if self.__gestorcolecciones is None : 
-            pass
+            return
         self.__gestorusuarios.usuario_actual = self.__gestorcolecciones.usuario
 
         contado = 0 

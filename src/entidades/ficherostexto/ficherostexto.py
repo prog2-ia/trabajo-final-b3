@@ -27,8 +27,7 @@ class FicherosTexto :
                 contador+=1 
 
     @staticmethod
-    def inicializar_fichero( usuario : Usuario ) -> None : 
-        global ruta_final
+    def inicializar_fichero( usuario : Usuario ) -> None :
         with open(  'persistencia/base_datos.txt'    , 'w') as writer : 
             writer.write(f'........................... BASE DE DATOS DEL GESTOR DE COLECCIONES .................................\n')
         

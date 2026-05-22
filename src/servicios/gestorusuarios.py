@@ -1,4 +1,3 @@
-
 from entidades.usuarios import Usuario
 from entidades.excepciones import UserInvalidError
 

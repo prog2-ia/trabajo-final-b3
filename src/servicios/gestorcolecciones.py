@@ -116,16 +116,13 @@ class Gestorcolecciones:
         except Exception as error :
             raise PiezaInvalidError(str(error))
         
-    def eliminar_pieza(self ,pieza)-> True :
-        nueva = self.__coleccione_actual.piezas
-        try : 
+    def eliminar_pieza(self, pieza) -> bool :
+        try:
             pieza_eliminar = self.obtener_pieza(pieza)
-        except : 
+            self.__coleccione_actual.eliminar_pieza(pieza_eliminar)
+            return True
+        except Exception:
             raise PiezaInvalidError('Pieza no encontrada')
-        else  :
-            nueva.remove(pieza_eliminar)
-            self.__coleccione_actual.piezas = nueva 
-            return True 
 
     def obtener_pieza(self , pieza) ->  'Pieza'  : 
         

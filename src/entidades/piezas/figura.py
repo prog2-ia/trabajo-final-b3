@@ -43,7 +43,7 @@ class Figura(Pieza):
             raise ValueError('Valor de dato en  altura incorrecto')
         altura = int(altura)
 
-        if type(anchura) != int and type(altura) != float :
+        if type(anchura) != int and type(anchura) != float :
             try :
                 anchura = float(anchura)
             except :

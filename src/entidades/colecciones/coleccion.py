@@ -38,7 +38,7 @@ class Coleccion :
     def __init__(self, piezas: list[Pieza] = None):
 
         if piezas != None:
-            self.__piezas = piezas
+            self.__piezas = piezas.copy()
         else:
             self.__piezas = []
 

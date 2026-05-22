@@ -53,7 +53,7 @@ class Interfaz :
                     resultado = self.__coordinador.iniciar_sesion_usuario(email= email , nombre= nombre)
                     print(f'----{resultado}----')
 
-                    if resultado is not None:
+                    if resultado == 'Inicio de sesión correcto':
                         self.__coordinador.inicializar_colecciones()
                         self.parte_colecciones(nombre)
                         

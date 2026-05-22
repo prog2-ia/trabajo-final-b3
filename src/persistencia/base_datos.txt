@@ -1,14 +1,7 @@
 ........................... BASE DE DATOS DEL GESTOR DE COLECCIONES .................................
 
-------------------------| Usuario : EJEMPLO1 |--------------------------
+------------------------| Usuario : d |--------------------------
 ------------------->  Coleccion : 0 
 ------- Figuras ------- 
-------- Cartas ------- 
-->Nombre:carta, Estado:MALO, Edicion:12, Rareza:RARO, Precio:0, Imagen:imagen, Frima:False
-------------------->  Coleccion : 1 
-------- Figuras ------- 
-->Nombre:figura, Estado:BUENO, Edicion:12, Rareza:LEGENDARIO, Precio:0, Altura:12, Anchura:12, Material:METAL
-------- Cartas ------- 
-------------------->  Coleccion : 2 
-------- Figuras ------- 
+->Nombre:g, Estado:MALO, Edicion:10, Rareza:COMUN, Precio:0, Altura:2, Anchura:2, Material:PVC
 ------- Cartas ------- 
