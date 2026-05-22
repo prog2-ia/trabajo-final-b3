@@ -1,4 +1,7 @@
 from ..usuarios import Usuario
+from ..piezas import  Pieza ,Carta , Figura
+from ..colecciones import  Coleccion
+import pickle
 import os
 class FicherosTexto : 
     
@@ -32,12 +35,23 @@ class FicherosTexto :
             writer.write(f'........................... BASE DE DATOS DEL GESTOR DE COLECCIONES .................................\n')
         
         FicherosTexto.anyadir_usuario_fichero(usuario)
-        FicherosTexto.escribir_fichero_binario() # Sobreescribimos también el fichero binario , para así poder cargar los datos a futuro
-    
-    @staticmethod
-    def escribir_fichero_binario() -> None : 
-        pass 
 
-    @staticmethod 
-    def cargar_base_datos() -> None : 
-        pass 
+class FicherosBinarios :
+    """
+    Clase encargada de escribir y leer ficheros binarios
+    """
+
+    @staticmethod
+    def escribir_fichero_binario(lista_usuarios : list) -> None:
+        with open("persistencia/datos.pickle" ,"wb") as writerbyte :
+            pickle.dump(lista_usuarios,writerbyte)
+
+    @staticmethod
+    def cargar_base_datos() -> list:
+        if not os.path.exists("persistencia/datos.pickle" ) :
+            return None
+        with open("persistencia/datos.pickle", "rb") as readerbyte:
+            usuarios = pickle.load(readerbyte)
+            # Verificamos que lo cargado sea una lista, si no, devolvemos lista vacía
+            return usuarios if isinstance(usuarios, list) else None
+

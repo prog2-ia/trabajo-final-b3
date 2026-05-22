@@ -1,7 +1,25 @@
 ........................... BASE DE DATOS DEL GESTOR DE COLECCIONES .................................
 
-------------------------| Usuario : d |--------------------------
+------------------------| Usuario : Prueba1 |--------------------------
 ------------------->  Coleccion : 0 
 ------- Figuras ------- 
-->Nombre:g, Estado:MALO, Edicion:10, Rareza:COMUN, Precio:0, Altura:2, Anchura:2, Material:PVC
+->Nombre:Pieza1, Estado:MALO, Edicion:12, Rareza:RARO, Precio:0, Altura:12, Anchura:12, Material:PVC
+------- Cartas ------- 
+->Nombre:PIEZA2, Estado:ACEPTABLE, Edicion:99, Rareza:LEGENDARIO, Precio:0, Imagen:imagen, Frima:False
+------------------->  Coleccion : 1 
+------- Figuras ------- 
+------- Cartas ------- 
+------------------->  Coleccion : 2 
+------- Figuras ------- 
+------- Cartas ------- 
+
+------------------------| Usuario : Prueba2 |--------------------------
+
+------------------------| Usuario : Prueba3 |--------------------------
+------------------->  Coleccion : 0 
+------- Figuras ------- 
+------- Cartas ------- 
+------------------->  Coleccion : 1 
+------- Figuras ------- 
+->Nombre:Pieza3, Estado:ACEPTABLE, Edicion:23, Rareza:RARO, Precio:649119.9, Altura:123, Anchura:123, Material:RESINA
 ------- Cartas ------- 

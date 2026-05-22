@@ -1,1 +1,0 @@
-from .ficherostexto import FicherosTexto

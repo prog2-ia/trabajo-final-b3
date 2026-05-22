@@ -2,7 +2,7 @@ from .gestorpiezas import  GestorPiezas
 from .gestorusuarios import  GestorUsuarios
 from .gestorcolecciones import  Gestorcolecciones
 from entidades.excepciones import UserInvalidError , ColeccionInvalidError , PiezaInvalidError
-from entidades.ficherostexto import FicherosTexto 
+from entidades.ficheros import FicherosTexto , FicherosBinarios
 
 class Coordinador  :
     """
@@ -74,10 +74,16 @@ class Coordinador  :
     """
 
     def __init__(self):
-        self.__gestorusuarios = GestorUsuarios()
+
         self.__gestorcolecciones = None
         self.__gestorpiezas = GestorPiezas()
-    
+
+        lista_recuperada = FicherosBinarios.cargar_base_datos()
+        if lista_recuperada is not None :
+            print("RECUPERADO")
+            self.__gestorusuarios = GestorUsuarios(lista_recuperada)
+        else :
+            self.__gestorusuarios = GestorUsuarios()
     
     """
     -------------------------------------------------------------------------------------------------------------------------------------
@@ -275,9 +281,14 @@ class Coordinador  :
     
     def guardar_base_datos(self) -> None : 
 
-        if self.__gestorcolecciones is None : 
-            return
-        self.__gestorusuarios.usuario_actual = self.__gestorcolecciones.usuario
+
+        usuarios = self.__gestorusuarios.listar_usuarios()
+
+        if not usuarios:
+            return "No hay usuarios registrados para guardar."
+
+        if self.__gestorcolecciones is not None:
+            self.__gestorusuarios.usuario_actual = self.__gestorcolecciones.usuario
 
         contado = 0 
         for usuario in self.__gestorusuarios.listar_usuarios() : 
@@ -285,5 +296,8 @@ class Coordinador  :
                 FicherosTexto.inicializar_fichero(usuario = usuario) 
             else : 
                 FicherosTexto.anyadir_usuario_fichero(usuario = usuario) 
-            contado+= 1 
-    
+            contado+= 1
+        FicherosBinarios.escribir_fichero_binario(self.__gestorusuarios.listar_usuarios())
+
+        return True
+

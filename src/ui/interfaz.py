@@ -57,11 +57,15 @@ class Interfaz :
                         self.__coordinador.inicializar_colecciones()
                         self.parte_colecciones(nombre)
                         
-                case '3' : 
-                    print('\n................................................................')
-                    print('                BASE DE DATOS IMPRESA en : src/persistencia/base_datos.txt            ')           
-                    print('................................................................\n')
-                    self.__coordinador.guardar_base_datos()
+                case '3' :
+                    resultado = self.__coordinador.guardar_base_datos()
+
+                    if resultado is True :
+                        print('\n................................................................')
+                        print('                BASE DE DATOS IMPRESA en : src/persistencia/base_datos.txt            ')
+                        print('................................................................\n')
+                    else :
+                        print(f'\n {resultado}')
 
                 case '4' :
                     return

@@ -24,8 +24,8 @@ class GestorUsuarios :
 
 
     """
-    def __init__(self):
-        self.__lista_usuarios : list[Usuario] = []
+    def __init__(self , lista_usuarios  : None  = []):
+        self.__lista_usuarios = lista_usuarios
         self.__usuario_actual : Usuario = None
 
 
