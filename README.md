@@ -153,3 +153,5 @@ cd <nombre-del-proyecto>
 # Instalar dependencias
 pip install -r requirements.txt
 
+# Ejecutar desde la terminal (debes estar en aplicacion_installer/dist)
+./ GestorColecciones
